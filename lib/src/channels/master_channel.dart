@@ -10,6 +10,9 @@ class MasterChannel<R, S> implements Channel<R, S>, Disposable, DisposableMixin 
   new() : _masterLogicChannel = _MasterLogicChannel<R, S>();
 
   @override
+  bool get isActive => !isDisposed;
+
+  @override
   Result<Stream<R>> getReceiver() => _masterLogicChannel.getStreamFromMaster();
 
   @override
@@ -27,6 +30,8 @@ class MasterChannel<R, S> implements Channel<R, S>, Disposable, DisposableMixin 
   void performDisposal() {
     _masterLogicChannel.dispose();
   }
+
+  Result<Channel<S, R>> buildFollowerChannel() => _masterLogicChannel.buildFollowerChannel();
 }
 
 class _MasterLogicChannel<R, S> with DisposableMixin, WithLifecycleScopeMixin implements MasterLogicChannel<R, S> {

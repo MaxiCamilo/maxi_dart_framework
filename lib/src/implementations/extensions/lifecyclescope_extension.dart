@@ -17,12 +17,15 @@ extension LifecycleScopeExtension on ILifecycleScope {
       return child;
     }
 
-    attach(value: child, function: (c) {
-      c.dispose();
-      if (onDispose != null) {
-        onDispose(c);
-      }
-    }).$;
+    attach(
+      value: child,
+      function: (c) {
+        c.dispose();
+        if (onDispose != null) {
+          onDispose(c);
+        }
+      },
+    ).$;
 
     return child;
   }
@@ -92,6 +95,15 @@ extension LifecycleScopeExtension on ILifecycleScope {
     final onDispose = _OnDispose(func: func);
     attach(value: onDispose, function: (d) => d.execute).$;
     return onDispose;
+  }
+
+  Future<void> waitDisposed() async {
+    if (isDisposed) return;
+    final completer = Completer();
+    onDispose(() {
+      completer.complete();
+    });
+    return completer.future;
   }
 }
 

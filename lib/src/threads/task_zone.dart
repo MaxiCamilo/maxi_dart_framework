@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:maxi_dart_framework/maxi_dart_framework.dart';
+import 'package:maxi_dart_framework/src/threads/toc/interactive_system.dart';
 
 mixin TaskZone {
   static const kInteractiveSymbolName = #maxiInteractive;
@@ -97,7 +98,7 @@ class _TaskZoneInstance<T> with DisposableMixin implements TaskInstance<T> {
     heart.attachChild(this);
 
     final child = Zone.current.fork(
-      zoneValues: {...zoneValues, TaskZone.kInteractiveSymbolName: heart},
+      zoneValues: {...zoneValues, TaskZone.kInteractiveSymbolName: heart, Interactive.interactiveChannelKey: heart.attachChild(BroadcastChannel())},
     );
     return child.run(() async {
       late Result<T> itemResult;

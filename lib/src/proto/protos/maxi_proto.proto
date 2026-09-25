@@ -1,0 +1,204 @@
+syntax = "proto3";
+
+import "google/protobuf/any.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/descriptor.proto";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.maxi.framework";
+option java_outer_classname = "MaxiProtoFramework";
+option objc_class_prefix = "HLW";
+
+//package maxi_proto_framework;
+
+enum MaxiProtoStreamStatus{
+  MXRT_TEXT                                   = 0;
+  MXRT_PARTIAL_CONTENT                        = 1;
+  MXRT_ERROR                                  = 2;
+  MXRT_COMPLETED                              = 3;
+}
+
+message ProtoDartDecorator{
+  repeated string             dart_decorators = 1;
+}
+
+message ProtoDartClass{
+  string                      name            = 1;
+  string                      dart_type       = 2;
+  repeated ProtoDartDecorator decorators      = 3;  
+}
+
+message ProtoDartField{
+  string                      name            = 1;
+  string                      dart_type       = 2;
+  repeated ProtoDartDecorator decorators      = 3;  
+}
+
+message ProtoDartEnum{
+  string                      name            = 1;
+  string                      prefix          = 2; //<-- ej: MXRT_UNKNOWN --In Dart---> unknown
+  string                      dart_type       = 3;
+  repeated ProtoDartDecorator decorators      = 4;  
+}
+
+message ProtoDartEnumValue{
+  string                      name            = 1;
+  int32                       number          = 2;
+  repeated ProtoDartDecorator decorators      = 3;  
+}
+
+
+//────────────────────────────────────────────────────────────────────────────────────
+
+extend google.protobuf.FieldOptions {
+  ProtoDartDecorator          dart_decorator  = 50001;
+  ProtoDartField              dart_field      = 50002;
+}
+
+extend google.protobuf.MessageOptions {
+  ProtoDartClass              dart_class      = 51001;
+}
+
+extend google.protobuf.EnumOptions {
+  ProtoDartEnum       dart_enum       = 52001;
+}
+
+
+extend google.protobuf.EnumValueOptions {
+  ProtoDartEnumValue  dart_enum_value = 53001;
+}
+
+//────────────────────────────────────────────────────────────────────────────────────
+
+message ProtoOration {
+    string                  token_id        = 1; //[(label) = "Nombre de app", (required) = true];
+    string                  text            = 2; //[(label) = "Versión",       (regex) = "Prueba"];
+    repeated string         text_parts      = 3;
+}
+
+message ProtoNegativeResult {
+    int32                   error_code      = 1;
+    ProtoOration            message         = 2;    
+}
+
+//────────────────────────────────────────────────────────────────────────────────────
+
+message ProtoResult {
+  bool                      its_correct     = 1;
+  oneof value {
+    google.protobuf.Any     content         = 2;
+    ProtoNegativeResult     error           = 3;
+  }
+}
+
+message ProtoVoidResult {
+  bool                      its_correct     = 1;
+  oneof value {
+    google.protobuf.Empty   content         = 2;
+    ProtoNegativeResult     error           = 3;
+  }
+}
+
+message ProtoVoidStream{
+    MaxiProtoStreamStatus status = 1;
+    oneof value{
+        ProtoOration text = 2;
+        google.protobuf.Empty completed = 3;
+        ProtoNegativeResult error = 4;
+    } 
+}
+
+//────────────────────────────────────────────────────────────────────────────────────
+
+message ProtoJsonResult {
+  bool                      its_correct     = 1;
+  oneof value {
+    string                  content         = 2;
+    ProtoNegativeResult     error           = 3;
+  }
+}
+
+message ProtoJsonStream{
+    MaxiProtoStreamStatus   status = 1;
+    oneof value{
+        ProtoOration        text = 2;
+        string              completed = 3;
+        ProtoNegativeResult error = 4;
+    } 
+}
+
+message EmptyRequest{
+  
+}
+
+message ProtoJsonRequest {
+  uint64                    identifier    = 1;
+  string                    json          = 2;
+}
+
+//────────────────────────────────────────────────────────────────────────────────────
+
+message SelectedFrom{
+    uint64                  from         = 1;
+    uint32                  amount       = 2;
+    string                  filter       = 3;
+    bool                    ascending    = 4;
+}
+
+
+message SelectMultipleIdentifiers{
+    repeated uint64         selected_ids = 1;
+}
+
+message SelectedIdentifierRequest{
+    uint64                  identifier   = 1;
+}
+
+message SelectByName{
+    string                  name         = 1;
+}
+
+message SelectByNameAndIdentifier{
+    string                  name         = 1;
+    uint64                  identifier   = 2;
+}
+
+message ObtainIdentifierStream{
+    MaxiProtoStreamStatus status = 1;
+    repeated uint64 identifiers = 2;
+    oneof value{
+        ProtoOration text = 3;
+        google.protobuf.Empty completed = 4;
+        ProtoNegativeResult error = 5;
+    } 
+}
+
+message ObtainNameStream{
+    MaxiProtoStreamStatus status = 1;
+    repeated SelectByNameAndIdentifier names = 2;
+    oneof value{
+        ProtoOration text = 3;
+        google.protobuf.Empty completed = 4;
+        ProtoNegativeResult error = 5;
+    } 
+}
+
+//────────────────────────────────────────────────────────────────────────────────────
+
+message ProtoAppStatus{
+    string                  name            = 1;
+    double                  version         = 2;
+    bool                    is_enable       = 3;
+    bool                    is_initialized  = 4;
+    ProtoNegativeResult     last_init_error = 5;   
+}
+
+service MaxiApp{
+    rpc Initialize(google.protobuf.Empty) returns (ProtoResult);
+    rpc GetStatus(google.protobuf.Empty) returns (ProtoAppStatus);
+}
+
+
+
+
+

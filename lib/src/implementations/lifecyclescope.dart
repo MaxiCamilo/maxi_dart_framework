@@ -10,6 +10,8 @@ abstract interface class ILifecycleScope implements DisposableMixin {
 
 abstract interface class WithLifecycleScope {
   LifecycleScope get heart;
+
+  void disposeHeart();
 }
 
 mixin WithLifecycleScopeMixin on DisposableMixin implements WithLifecycleScope {
@@ -32,10 +34,21 @@ mixin WithLifecycleScopeMixin on DisposableMixin implements WithLifecycleScope {
   @mustCallSuper
   void performDisposal() {
     _lifecycleScope?.dispose();
+    _lifecycleScope = null;
+  }
+
+  @override
+  void disposeHeart(){
+    _lifecycleScope?.dispose();
+    _lifecycleScope = null;
   }
 }
 
 mixin DelegateLifetime implements DisposableMixin, WithLifecycleScope {
+  @override
+  void disposeHeart() {
+    heart.dispose();
+  }
   @override
   bool get isDisposed => heart.isDisposed;
 
@@ -78,7 +91,7 @@ final class LifecycleScope with DisposableMixin implements ILifecycleScope {
   }
 }
 
-final class _LifecycleScopeEntry<T> extends LinkedListEntry<_LifecycleScopeEntry<T>> with DisposableMixin {
+final class _LifecycleScopeEntry<T> extends LinkedListEntry<_LifecycleScopeEntry> with DisposableMixin {
   final T value;
   final void Function(T) function;
 

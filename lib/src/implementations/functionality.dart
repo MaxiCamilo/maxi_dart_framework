@@ -23,3 +23,26 @@ abstract base class Functionality<T> {
     }
   }
 }
+
+abstract base class Logic<T> {
+  const Logic();
+
+  @protected
+  Result<T> performExecution(ILifecycleScope scope);
+
+  @nonVirtual
+  Result<T> run([ILifecycleScope? scope]) {
+    if (scope == null) {
+      scope = LifecycleScopeFactory();
+      try {
+        return performExecution(scope);
+      } catch (ex, st) {
+        return ExceptionResult(exception: ex, stackTrace: st, message: Oration('An error occurred while executing a feature on %', [runtimeType.toString()]));
+      } finally {
+        scope.dispose();
+      }
+    } else {
+      return performExecution(scope);
+    }
+  }
+}

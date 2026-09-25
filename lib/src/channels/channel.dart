@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:maxi_dart_framework/maxi_dart_framework.dart';
 
 abstract interface class Channel<R, S> implements Disposable {
+  bool get isActive;
+
   Result<Stream<R>> getReceiver();
 
   Result<void> sendItem(S item);
@@ -16,7 +18,6 @@ extension ChannelExtension<R, S> on Channel<R, S> {
     final stream = getReceiver().$;
 
     final otherReceiver = other.getReceiver().$;
-    
 
     late final StreamSubscription thisSubscription;
     late final StreamSubscription otherSubscription;

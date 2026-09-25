@@ -1,8 +1,11 @@
 import 'package:maxi_dart_framework/maxi_dart_framework.dart';
 import 'package:maxi_dart_framework/src/channels/master_channel/master_logic_channel.dart';
 
-class FollowerChannel<R, S> with DisposableMixin implements Channel<R, S> {  
+class FollowerChannel<R, S> with DisposableMixin implements Channel<R, S> {
   final MasterLogicChannel<S, R> masterLogicChannel;
+
+  @override
+  bool get isActive => !isDisposed;
 
   new({required this.masterLogicChannel});
 

@@ -6,6 +6,9 @@ class BroadcastChannel<T> with DelegateLifetime implements Channel<T, T> {
   final _BroadcastLogicChannel<T> _logic;
   final int _identifier;
 
+  @override
+  bool get isActive => !isDisposed;
+
   BroadcastChannel() : _logic = _BroadcastLogicChannel<T>(), _identifier = 0 {
     _logic.attach(this);
   }
