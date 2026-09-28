@@ -12,7 +12,7 @@ class InitIsolateChannelPoint with DisposableMixin, WithLifecycleScopeMixin impl
   StreamController<dynamic>? _controller;
 
   final _receivePort = ReceivePort();
-  final _initWaiterCompleter = Completer<void>();
+  final _initWaiterCompleter = Completer<Result<void>>();
 
   late final SendPort sendPort;
 
@@ -55,7 +55,11 @@ class InitIsolateChannelPoint with DisposableMixin, WithLifecycleScopeMixin impl
       if (message is (SendPort, int)) {
         _senderThread = message.$1;
         _isolateId = message.$2;
-        _initWaiterCompleter.complete();
+        _initWaiterCompleter.complete(Result.ok);
+      } else if (message is ResultFailure) {
+        log('Initialization failed on InitIsolateChannelPoint with error: ${message.toString()}');
+        _initWaiterCompleter.complete(message.cast());
+        dispose();
       } else {
         log('Cannot process item: SendPort and id are required prior to execution');
       }

@@ -105,6 +105,18 @@ extension LifecycleScopeExtension on ILifecycleScope {
     });
     return completer.future;
   }
+
+  Timer attachTimer(Timer timer) {
+    if (isDisposed) {
+      log('LifecycleScope is already disposed. Cancelling Timer immediately');
+      timer.cancel();
+      return timer;
+    }
+
+    attach(value: timer, function: (t) => t.cancel()).$;
+
+    return timer;
+  }
 }
 
 class _OnDispose with DisposableMixin {

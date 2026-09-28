@@ -3,18 +3,34 @@ import 'dart:developer';
 
 import 'package:maxi_dart_framework/maxi_dart_framework.dart';
 import 'package:maxi_dart_framework/src/threads/channels/isolate_channel_point.dart';
-import 'package:maxi_dart_framework/src/threads/controllers/isolate_executor.dart';
+import 'package:maxi_dart_framework/src/threads/controllers/isolate_task.dart';
 import 'package:maxi_dart_framework/src/threads/toc/interactive_system.dart';
 
 class IsolateRequest<T> with DisposableMixin, WithLifecycleScopeMixin implements TaskInstance<T> {
-  final int taskID;
   final IsolateChannelPoint channel;
+  final int uniqueID;
+
+  int get taskID => _taskID;
 
   final _completer = Completer<Result<T>>();
+  int _taskID = 0;
 
   StreamController<dynamic>? _interactiveController;
 
-  IsolateRequest({required this.taskID, required this.channel});
+  late final Timer _initTimeoutTimer = heart.attachTimer(
+    Timer(
+      Duration(seconds: 30),
+      () {
+        log('Initialization timeout reached for request with unique ID $uniqueID, cancelling request');
+        if (!_completer.isCompleted) {
+          _completer.complete(Result.error('The thread did not acknowledge the task in time, so it will be canceled'));
+        }
+        dispose();
+      },
+    ),
+  );
+
+  IsolateRequest({required this.channel, required this.uniqueID});
 
   @override
   FutureResult<T> waitResult() => futureScope(() async {
@@ -58,6 +74,21 @@ class IsolateRequest<T> with DisposableMixin, WithLifecycleScopeMixin implements
 
     return Result.ok;
   });
+
+  void confirmExecution(int taskID) {
+    if (_taskID > 0) {
+      log('Task ID is already set to $_taskID, confirming execution with new task ID $taskID');
+      return;
+    }
+
+    if (isDisposed) {
+      log('Attempted to confirm execution after request was disposed');
+      return;
+    }
+
+    _initTimeoutTimer.cancel();
+    _taskID = taskID;
+  }
 
   Result<void> addInteractiveItem(dynamic item) => resultScope(() {
     if (isDisposed) {
