@@ -57,7 +57,7 @@ extension LifecycleScopeExtension on ILifecycleScope {
     final subscription = volatileScope(
       message: const Oration('Failed to listen to the stream'),
       function: () => stream
-          .doOnCancel(entry.dispose)
+          .doOnCancel(()=> entry.dispose)
           .listen(
             onData,
             onError: onError,

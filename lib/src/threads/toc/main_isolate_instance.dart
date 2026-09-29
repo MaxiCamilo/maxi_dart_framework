@@ -20,7 +20,6 @@ class _ClientPoints with DisposableMixin {
 
 class MainIsolateInstance with DisposableMixin, WithLifecycleScopeMixin, AsynchronousInitializationMixin implements IToc {
   late final DisposableLinkedList<_ClientPoints> _asynchronousThreads;
-  late final IsolateChannelPoint _sharedValuesThread;
 
   late final IsolateTaskManager _taskManager;
 
@@ -33,14 +32,13 @@ class MainIsolateInstance with DisposableMixin, WithLifecycleScopeMixin, Asynchr
     _asynchronousThreads = heart.attachChild(DisposableLinkedList<_ClientPoints>());
 
     final (sharedPort, sharedChannel) = _taskManager.buildPort().$;
-    await Isolate.spawn<(int, SendPort)>(_startThread, (1, sharedPort));
+    await Isolate.spawn<(int, SendPort)>(_startThread, (1, sharedPort), debugName: 'Thread 1: Shared Values');
     await sharedChannel.waitInit();
-    _sharedValuesThread = sharedChannel;
     //_asynchronousThreads.addLast(sharedChannel);
 
     for (int i = 0; i < Platform.numberOfProcessors; i++) {
       final (sharedPort, sharedChannel) = _taskManager.buildPort().$;
-      await Isolate.spawn<(int, SendPort)>(_startThread, (i + 2, sharedPort));
+      await Isolate.spawn<(int, SendPort)>(_startThread, (i + 2, sharedPort), debugName: 'Thread ${i + 2}: Task Processor');
       await sharedChannel.waitInit();
       _asynchronousThreads.addLast(_ClientPoints(channel: sharedChannel));
     }
@@ -58,7 +56,7 @@ class MainIsolateInstance with DisposableMixin, WithLifecycleScopeMixin, Asynchr
   @override
   FutureResult<T> execute<T>({InvocationParameters parameters = InvocationParameters.empty, required FutureResultOr<T> Function(InvocationParameters) function}) async {
     checkDisposed().$;
-    initialize().$;
+    await initialize().$;
 
     final selectedThread = _asynchronousThreads.minimumOf((x) => x.taskCount);
     selectedThread.taskCount += 1;
@@ -70,28 +68,61 @@ class MainIsolateInstance with DisposableMixin, WithLifecycleScopeMixin, Asynchr
   }
 
   @override
-  FutureResult<T> getSharedValue<T>(String name) async {
+  FutureResult<T> getSharedValue<T>(String name) => futureScope(() async {
     checkDisposed().$;
-    initialize().$;
+    await initialize().$;
 
-    
-  }
-
-  @override
-  Future<Result<R>> invokeSharedValue<T, R>(String name, FutureOr<Result<R>> Function(T) callback) {
-    // TODO: implement invokeSharedValue
-    throw UnimplementedError();
-  }
+    return await _taskManager.addNewTask(
+      threadID: 1,
+      parameters: InvocationParameters.only(name),
+      function: (para) => futureScope(() => Toc.kInstance.getSharedValue<T>(para.first<String>().$)),
+    );
+  });
 
   @override
-  Future<Result<void>> setSharedOperatorValue<T extends Disposable>(String name, T value, [bool disposePrevious = false]) {
-    // TODO: implement setSharedOperatorValue
-    throw UnimplementedError();
-  }
+  Future<Result<R>> invokeSharedValue<T, R>(String name, FutureOr<Result<R>> Function(T) callback) => futureScope(() async {
+    checkDisposed().$;
+    await initialize().$;
+
+    return await _taskManager.addNewTask(
+      threadID: 1,
+      parameters: InvocationParameters.list([name, callback]),
+      function: (para) => futureScope(() => Toc.kInstance.invokeSharedValue<T, R>(para.first<String>().$, para.second<FutureOr<Result<R>> Function(T)>().$)),
+    );
+  });
 
   @override
-  FutureResult<void> setSharedValue<T>(String name, T value) {
-    // TODO: implement setSharedValue
-    throw UnimplementedError();
-  }
+  Future<Result<void>> setSharedOperatorValue<T extends Disposable>(String name, T value, [bool disposePrevious = false]) => futureScope(() async {
+    checkDisposed().$;
+    await initialize().$;
+
+    return await _taskManager.addNewTask(
+      threadID: 1,
+      parameters: InvocationParameters.list([name, value, disposePrevious]),
+      function: (para) => futureScope(
+        () => Toc.kInstance.setSharedOperatorValue<T>(
+          para.first<String>().$,
+          para.second<T>().$,
+          para.third<bool>().$,
+        ),
+      ),
+    );
+  });
+
+  @override
+  FutureResult<void> setSharedValue<T>(String name, T value) => futureScope(() async {
+    checkDisposed().$;
+    await initialize().$;
+
+    return await _taskManager.addNewTask(
+      threadID: 1,
+      parameters: InvocationParameters.list([name, value]),
+      function: (para) => futureScope(
+        () => Toc.kInstance.setSharedValue<T>(
+          para.first<String>().$,
+          para.second<T>().$,
+        ),
+      ),
+    );
+  });
 }

@@ -38,7 +38,7 @@ mixin WithLifecycleScopeMixin on DisposableMixin implements WithLifecycleScope {
   }
 
   @override
-  void disposeHeart(){
+  void disposeHeart() {
     _lifecycleScope?.dispose();
     _lifecycleScope = null;
   }
@@ -49,6 +49,7 @@ mixin DelegateLifetime implements DisposableMixin, WithLifecycleScope {
   void disposeHeart() {
     heart.dispose();
   }
+
   @override
   bool get isDisposed => heart.isDisposed;
 
@@ -84,7 +85,7 @@ final class LifecycleScope with DisposableMixin implements ILifecycleScope {
 
   @override
   void performDisposal() {
-    for (final entry in _entries) {
+    for (final entry in _entries.toList(growable: false)) {
       entry.dispose();
     }
     _entries.clear();

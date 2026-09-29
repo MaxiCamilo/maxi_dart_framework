@@ -37,6 +37,8 @@ class IsolateTaskManager with DisposableMixin, WithLifecycleScopeMixin {
       return Result.error('No connector found for threadID %s', [threadID.toString()]);
     }
 
+    _nextTaskID += 1;
+
     final uniqueID = (currentIsolateID * 10000) + _nextTaskID + function.hashCode + parameters.hashCode + Random().nextInt(10000);
     final pack = IsolateExecutorNewTask<T>(function: function, parameters: parameters, uniqueID: uniqueID);
     final request = IsolateRequest<T>(channel: connector, uniqueID: uniqueID);
@@ -53,14 +55,7 @@ class IsolateTaskManager with DisposableMixin, WithLifecycleScopeMixin {
     _channels.attachLast(newChannel);
 
     newChannel.waitInit().whenComplete(() {
-      final exists = _channels.select((x) => x.isolateId == newChannel.isolateId);
-      if (exists == null) {
-        _channels.addLast(newChannel);
-        newChannel.getReceiver().$.whereType<IsolateExecutorMessage>().listen((data) => _processMessage(newChannel, data));
-      } else {
-        log('Channel for isolateId ${newChannel.isolateId} already exists. Disposing the new channel.');
-        newChannel.dispose();
-      }
+      newChannel.getReceiver().$.whereType<IsolateExecutorMessage>().listen((data) => _processMessage(newChannel, data));
     });
 
     return Result.value((newChannel.sendPort, newChannel));
@@ -115,20 +110,20 @@ class IsolateTaskManager with DisposableMixin, WithLifecycleScopeMixin {
       return;
     }
 
-    request.confirmExecution(data.taskID);
+    request.confirmExecution();
   }
 
   void _processCompletedTask(IsolateExecutorCompletedTask data) {
-    final request = _request.select((x) => x.taskID == data.taskID);
+    final request = _request.select((x) => x.uniqueID == data.uniqueID);
     if (request == null) {
       log('Completed task received but no matching request was found');
       return;
     }
-    request.defineResult(data.result).logIfFailure('Failed to define result for completed task with ID %', [data.taskID.toString()]);
+    request.defineResult(data.result).logIfFailure('Failed to define result for completed task with ID %', [data.uniqueID.toString()]);
   }
 
   void _processCancelledTask(IsolateExecutorCancelledTask data) {
-    final request = _request.select((x) => x.taskID == data.taskID);
+    final request = _request.select((x) => x.uniqueID == data.uniqueID);
     if (request == null) {
       return;
     }
@@ -136,7 +131,7 @@ class IsolateTaskManager with DisposableMixin, WithLifecycleScopeMixin {
   }
 
   void _processInteractiveItem(IsolateExecutorInteractiveItem data) {
-    final request = _request.select((x) => x.taskID == data.taskID);
+    final request = _request.select((x) => x.uniqueID == data.uniqueID);
     if (request == null) {
       return;
     }
@@ -144,9 +139,7 @@ class IsolateTaskManager with DisposableMixin, WithLifecycleScopeMixin {
   }
 
   void _buildNewTask(IsolateChannelPoint channel, IsolateExecutorNewTask data) {
-    final id = _nextTaskID;
-    _nextTaskID += 1;
-    final task = data.buildTask(channel, id, zoneValues, currentIsolateID);
+    final task = data.buildTask(channel, zoneValues, currentIsolateID);
     _tasks.addLast(task);
 
     final runResult = task.run();

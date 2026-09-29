@@ -1,6 +1,4 @@
 import 'package:maxi_dart_framework/maxi_dart_framework.dart';
-import 'package:maxi_dart_framework/src/proto/adapters/adapter_proto_to_oration.dart';
-import 'package:maxi_dart_framework/src/proto/generated/maxi_proto.pb.dart';
 
 extension AdapterProtoToNegativeResultExtension on ProtoNegativeResult {
   NegativeResult toNegativeResult() {

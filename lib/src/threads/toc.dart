@@ -9,10 +9,9 @@ abstract interface class IToc {
   FutureResult<T> execute<T>({InvocationParameters parameters = InvocationParameters.empty, required FutureResultOr<T> Function(InvocationParameters) function});
   FutureResult<T> getSharedValue<T>(String name);
   FutureResult<void> setSharedValue<T>(String name, T value);
-  
+
   Future<Result<R>> invokeSharedValue<T, R>(String name, FutureOr<Result<R>> Function(T) callback);
   Future<Result<void>> setSharedOperatorValue<T extends Disposable>(String name, T value, [bool disposePrevious = false]);
-  
 }
 
 mixin Toc {
@@ -64,4 +63,24 @@ mixin Toc {
       return Result.error('Thread Request ID is not an integer');
     }
   });
+
+  static FutureResult<T> execute<T>({InvocationParameters parameters = InvocationParameters.empty, required FutureResultOr<T> Function(InvocationParameters) function}) {
+    return kInstance.execute<T>(parameters: parameters, function: function);
+  }
+
+  static FutureResult<T> getSharedValue<T>(String name) {
+    return kInstance.getSharedValue<T>(name);
+  }
+
+  static FutureResult<void> setSharedValue<T>(String name, T value) {
+    return kInstance.setSharedValue<T>(name, value);
+  }
+
+  static Future<Result<R>> invokeSharedValue<T, R>(String name, FutureOr<Result<R>> Function(T) callback) {
+    return kInstance.invokeSharedValue<T, R>(name, callback);
+  }
+
+  static Future<Result<void>> setSharedOperatorValue<T extends Disposable>(String name, T value, [bool disposePrevious = false]) {
+    return kInstance.setSharedOperatorValue<T>(name, value, disposePrevious);
+  }
 }

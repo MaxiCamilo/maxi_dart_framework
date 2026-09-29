@@ -545,7 +545,7 @@ class ProtoResult extends $pb.GeneratedMessage {
     ..oo(0, [2, 3])
     ..aOB(1, _omitFieldNames ? '' : 'itsCorrect')
     ..aOM<$2.Any>(2, _omitFieldNames ? '' : 'content',
-        subBuilder: $2.Any.create)
+        subBuilder: $2.Any.new)
     ..aOM<ProtoNegativeResult>(3, _omitFieldNames ? '' : 'error',
         subBuilder: ProtoNegativeResult.create)
     ..hasRequiredFields = false;
@@ -644,9 +644,9 @@ class ProtoVoidResult extends $pb.GeneratedMessage {
     ..oo(0, [2, 3])
     ..aOB(1, _omitFieldNames ? '' : 'itsCorrect')
     ..aOM<$0.Empty>(2, _omitFieldNames ? '' : 'content',
-        subBuilder: $0.Empty.create)
+        subBuilder: $0.Empty.new)
     ..aOM<ProtoNegativeResult>(3, _omitFieldNames ? '' : 'error',
-        subBuilder: ProtoNegativeResult.create)
+        subBuilder: ProtoNegativeResult.new)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -750,7 +750,7 @@ class ProtoVoidStream extends $pb.GeneratedMessage {
     ..aOM<ProtoOration>(2, _omitFieldNames ? '' : 'text',
         subBuilder: ProtoOration.create)
     ..aOM<$0.Empty>(3, _omitFieldNames ? '' : 'completed',
-        subBuilder: $0.Empty.create)
+        subBuilder: $0.Empty.new)
     ..aOM<ProtoNegativeResult>(4, _omitFieldNames ? '' : 'error',
         subBuilder: ProtoNegativeResult.create)
     ..hasRequiredFields = false;
@@ -1506,7 +1506,7 @@ class ObtainIdentifierStream extends $pb.GeneratedMessage {
     ..aOM<ProtoOration>(3, _omitFieldNames ? '' : 'text',
         subBuilder: ProtoOration.create)
     ..aOM<$0.Empty>(4, _omitFieldNames ? '' : 'completed',
-        subBuilder: $0.Empty.create)
+        subBuilder: $0.Empty.new)
     ..aOM<ProtoNegativeResult>(5, _omitFieldNames ? '' : 'error',
         subBuilder: ProtoNegativeResult.create)
     ..hasRequiredFields = false;
@@ -1633,7 +1633,7 @@ class ObtainNameStream extends $pb.GeneratedMessage {
     ..aOM<ProtoOration>(3, _omitFieldNames ? '' : 'text',
         subBuilder: ProtoOration.create)
     ..aOM<$0.Empty>(4, _omitFieldNames ? '' : 'completed',
-        subBuilder: $0.Empty.create)
+        subBuilder: $0.Empty.new)
     ..aOM<ProtoNegativeResult>(5, _omitFieldNames ? '' : 'error',
         subBuilder: ProtoNegativeResult.create)
     ..hasRequiredFields = false;

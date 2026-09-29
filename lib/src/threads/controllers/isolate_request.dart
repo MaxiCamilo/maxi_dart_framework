@@ -10,10 +10,7 @@ class IsolateRequest<T> with DisposableMixin, WithLifecycleScopeMixin implements
   final IsolateChannelPoint channel;
   final int uniqueID;
 
-  int get taskID => _taskID;
-
   final _completer = Completer<Result<T>>();
-  int _taskID = 0;
 
   StreamController<dynamic>? _interactiveController;
 
@@ -37,7 +34,7 @@ class IsolateRequest<T> with DisposableMixin, WithLifecycleScopeMixin implements
     if (_completer.isCompleted) return await _completer.future;
 
     if (Interactive.hasInteractiveChannel) {
-      heart.attachStreamSubscription(Interactive.getReceive().$.listen((x) => channel.sendItem(IsolateExecutorInteractiveItem(taskID: taskID, item: x))));
+      heart.attachStreamSubscription(Interactive.getReceive().$.listen((x) => channel.sendItem(IsolateExecutorInteractiveItem(uniqueID: uniqueID, item: x))));
       _interactiveController ??= heart.attachStreamController(StreamController<dynamic>.broadcast());
     }
 
@@ -75,19 +72,13 @@ class IsolateRequest<T> with DisposableMixin, WithLifecycleScopeMixin implements
     return Result.ok;
   });
 
-  void confirmExecution(int taskID) {
-    if (_taskID > 0) {
-      log('Task ID is already set to $_taskID, confirming execution with new task ID $taskID');
-      return;
-    }
-
+  void confirmExecution() {
     if (isDisposed) {
       log('Attempted to confirm execution after request was disposed');
       return;
     }
 
     _initTimeoutTimer.cancel();
-    _taskID = taskID;
   }
 
   Result<void> addInteractiveItem(dynamic item) => resultScope(() {

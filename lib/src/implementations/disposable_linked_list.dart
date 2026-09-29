@@ -72,7 +72,7 @@ class DisposableLinkedList<T extends Disposable> extends Iterable<T> with Dispos
   }
 
   @override
-  bool contains(Object? entry) => _list.any((element) => element.value == entry);
+  bool contains(Object? element) => _list.any((x) => x.value == element);
   @override
   Iterator<T> get iterator => _list.map((e) => e.value as T).iterator;
   @override

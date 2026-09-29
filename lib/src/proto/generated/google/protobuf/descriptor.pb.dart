@@ -763,7 +763,6 @@ class ExtensionRangeOptions extends $pb.GeneratedMessage {
   $pb.PbList<ExtensionRangeOptions_Declaration> get declaration => $_getList(0);
 
   /// The verification state of the range.
-  /// TODO: flip the default to DECLARATION once all empty ranges
   /// are marked as UNVERIFIED.
   @$pb.TagNumber(3)
   ExtensionRangeOptions_VerificationState get verification => $_getN(1);
@@ -1807,7 +1806,6 @@ class FileOptions extends $pb.GeneratedMessage {
   /// which will throw an exception if invalid UTF-8 is parsed from the wire or
   /// assigned to a string field.
   ///
-  /// TODO: clarify exactly what kinds of field types this option
   /// applies to, and update these docs accordingly.
   ///
   /// Proto3 files already perform these checks. Setting the option explicitly to
@@ -2062,16 +2060,7 @@ class MessageOptions extends $pb.GeneratedMessage {
   /// Whether the message is an automatically generated map entry type for the
   /// maps field.
   ///
-  /// For maps fields:
-  ///     map<KeyType, ValueType> map_field = 1;
-  /// The parsed descriptor looks like:
-  ///     message MapFieldEntry {
-  ///         option map_entry = true;
-  ///         optional KeyType key = 1;
-  ///         optional ValueType value = 2;
-  ///     }
-  ///     repeated MapFieldEntry map_field = 1;
-  ///
+
   /// Implementations may choose not to generate the map_entry=true message, but
   /// use a native map in the target language to hold the keys and values.
   /// The reflection APIs in such implementations still need to work as
@@ -2097,7 +2086,6 @@ class MessageOptions extends $pb.GeneratedMessage {
   /// This should only be used as a temporary measure against broken builds due
   /// to the change in behavior for JSON field name conflicts.
   ///
-  /// TODO This is legacy behavior we plan to remove once downstream
   /// teams have had time to migrate.
   @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(11)
@@ -2431,7 +2419,6 @@ class FieldOptions extends $pb.GeneratedMessage {
   /// options below.  This option is only implemented to support use of
   /// [ctype=CORD] and [ctype=STRING] (the default) on non-repeated fields of
   /// type "bytes" in the open source release.
-  /// TODO: make ctype actually deprecated.
   @$pb.TagNumber(1)
   FieldOptions_CType get ctype => $_getN(0);
   @$pb.TagNumber(1)
@@ -2770,7 +2757,6 @@ class EnumOptions extends $pb.GeneratedMessage {
   /// and strips underscored from the fields before comparison in proto3 only.
   /// The new behavior takes `json_name` into account and applies to proto2 as
   /// well.
-  /// TODO Remove this legacy behavior once downstream teams have
   /// had time to migrate.
   @$core.Deprecated('This field is deprecated.')
   @$pb.TagNumber(6)
@@ -3367,7 +3353,6 @@ class FeatureSet_VisibilityFeature extends $pb.GeneratedMessage {
   static FeatureSet_VisibilityFeature? _defaultInstance;
 }
 
-/// TODO Enums in C++ gencode (and potentially other languages) are
 /// not well scoped.  This means that each of the feature enums below can clash
 /// with each other.  The short names we've chosen maximize call-site
 /// readability, but leave us very open to this scenario.  A future feature will

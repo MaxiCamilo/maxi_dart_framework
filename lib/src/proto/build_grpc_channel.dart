@@ -1,8 +1,6 @@
 import 'package:grpc/grpc.dart';
 import 'package:grpc/grpc_connection_interface.dart';
 import 'package:maxi_dart_framework/maxi_dart_framework.dart';
-import 'package:maxi_dart_framework/src/proto/generated/maxi_proto.pbgrpc.dart';
-import 'package:maxi_dart_framework/src/proto/grpc_unix_socket_channel.dart';
 
 final class BuildGrpcChannel extends Logic<ClientChannelBase> {
   final String address;

@@ -8,30 +8,29 @@ abstract interface class IsolateExecutorMessage {}
 
 class IsolateExecutorNewTaskResult implements IsolateExecutorMessage {
   final int uniqueID;
-  final int taskID;
   final Result<void> result;
 
-  new({required this.uniqueID, required this.taskID, required this.result});
+  new({required this.uniqueID, required this.result});
 }
 
 class IsolateExecutorCompletedTask<T> implements IsolateExecutorMessage {
-  final int taskID;
+  final int uniqueID;
   final Result<T> result;
 
-  const new({required this.taskID, required this.result});
+  const new({required this.uniqueID, required this.result});
 }
 
 class IsolateExecutorInteractiveItem<T> implements IsolateExecutorMessage {
-  final int taskID;
+  final int uniqueID;
   final T item;
 
-  const new({required this.taskID, required this.item});
+  const new({required this.uniqueID, required this.item});
 }
 
 class IsolateExecutorCancelledTask implements IsolateExecutorMessage {
-  final int taskID;
+  final int uniqueID;
 
-  const new({required this.taskID});
+  const new({required this.uniqueID});
 }
 
 class IsolateExecutorNewTask<T> implements IsolateExecutorMessage {
@@ -41,11 +40,10 @@ class IsolateExecutorNewTask<T> implements IsolateExecutorMessage {
 
   const new({required this.uniqueID, required this.parameters, required this.function});
 
-  IsolateTask<T> buildTask(IsolateChannelPoint channel, int taskID, Map zoneValues, int currentThreadID) {
+  IsolateTask<T> buildTask(IsolateChannelPoint channel, Map zoneValues, int currentThreadID) {
     return IsolateTask<T>(
       channel: channel,
       uniqueID: uniqueID,
-      taskID: taskID,
       parameters: parameters,
       function: function,
       zoneValues: zoneValues,
@@ -56,7 +54,6 @@ class IsolateExecutorNewTask<T> implements IsolateExecutorMessage {
 
 class IsolateTask<T> with DisposableMixin, WithLifecycleScopeMixin {
   final IsolateChannelPoint channel;
-  final int taskID;
   final int currentThreadID;
   final int uniqueID;
   final InvocationParameters parameters;
@@ -67,18 +64,18 @@ class IsolateTask<T> with DisposableMixin, WithLifecycleScopeMixin {
 
   late final MasterChannel interactiveChannel;
 
-  new({required this.uniqueID, required this.channel, required this.taskID, required this.parameters, required this.function, required this.zoneValues, required this.currentThreadID});
+  new({required this.uniqueID, required this.channel, required this.parameters, required this.function, required this.zoneValues, required this.currentThreadID});
 
   Result<void> run() => resultScopeVoid(() {
     if (isRunning) return;
     isRunning = true;
 
-    final newTask = IsolateExecutorNewTaskResult(taskID: taskID, uniqueID: uniqueID, result: Result.ok);
+    final newTask = IsolateExecutorNewTaskResult(uniqueID: uniqueID, result: Result.ok);
     channel.sendItem(newTask).$;
 
     interactiveChannel = heart.attachChild(MasterChannel());
     interactiveChannel.getReceiver().$.listen((x) {
-      channel.sendItem(IsolateExecutorInteractiveItem<T>(taskID: taskID, item: x)).logIfFailure('Interactive item received');
+      channel.sendItem(IsolateExecutorInteractiveItem<T>(uniqueID: uniqueID, item: x)).logIfFailure('Interactive item received');
     });
 
     final childChannel = interactiveChannel.buildFollowerChannel().$;
@@ -96,11 +93,11 @@ class IsolateTask<T> with DisposableMixin, WithLifecycleScopeMixin {
     child.run(() async {
       try {
         final result = await function(parameters);
-        channel.sendItem(IsolateExecutorCompletedTask<T>(taskID: taskID, result: result)).$;
+        channel.sendItem(IsolateExecutorCompletedTask<T>(uniqueID: uniqueID, result: result)).$;
       } catch (ex, st) {
         final exError = ExceptionResult<T>(exception: ex, stackTrace: st, message: Oration("An unexpected error occurred %", [ex.toString()]));
 
-        channel.sendItem(IsolateExecutorCompletedTask<T>(taskID: taskID, result: exError)).logIfFailure('Isolate exception');
+        channel.sendItem(IsolateExecutorCompletedTask<T>(uniqueID: uniqueID, result: exError)).logIfFailure('Isolate exception');
       } finally {
         dispose();
       }
