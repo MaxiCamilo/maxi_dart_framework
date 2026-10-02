@@ -15,4 +15,14 @@ extension IterableExtensions<T> on Iterable<T> {
   T minimumOf(num Function(T x) funcion) {
     return reduce((curr, next) => funcion(curr) < funcion(next) ? curr : next);
   }
+
+  bool sameData(Iterable<T> other) {
+    if (length != other.length) return false;
+    final aIter = iterator;
+    final bIter = other.iterator;
+    while (aIter.moveNext() && bIter.moveNext()) {
+      if (aIter.current != bIter.current) return false;
+    }
+    return true;
+  }
 }
