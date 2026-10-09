@@ -9,9 +9,12 @@ import 'package:maxi_dart_framework/src/threads/controllers/isolate_request.dart
 import 'package:maxi_dart_framework/src/threads/controllers/isolate_task.dart';
 import 'package:rxdart/rxdart.dart';
 
+
+
 class IsolateTaskManager with DisposableMixin, WithLifecycleScopeMixin {
   final int currentIsolateID;
   final Map<dynamic, dynamic> zoneValues;
+  final Map<Symbol, dynamic> _localThreadValues = {};
 
   late final DisposableLinkedList<IsolateChannelPoint> _channels = heart.attachChild(DisposableLinkedList<IsolateChannelPoint>());
   late final DisposableLinkedList<IsolateTask> _tasks = heart.attachChild(DisposableLinkedList<IsolateTask>());
@@ -139,7 +142,7 @@ class IsolateTaskManager with DisposableMixin, WithLifecycleScopeMixin {
   }
 
   void _buildNewTask(IsolateChannelPoint channel, IsolateExecutorNewTask data) {
-    final task = data.buildTask(channel, zoneValues, currentIsolateID);
+    final task = data.buildTask(channel, {#localThreadValues: _localThreadValues, ...zoneValues}, currentIsolateID);
     _tasks.addLast(task);
 
     final runResult = task.run();
