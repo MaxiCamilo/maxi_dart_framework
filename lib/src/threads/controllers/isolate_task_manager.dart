@@ -104,7 +104,7 @@ class IsolateTaskManager with DisposableMixin, WithLifecycleScopeMixin {
       return;
     }
 
-    if (data.result is ResultFailure) {
+    if (data.result is NegativeResult) {
       log('New task result received with failure: ${data.result}');
       request.dispose();
       return;
@@ -143,7 +143,7 @@ class IsolateTaskManager with DisposableMixin, WithLifecycleScopeMixin {
     _tasks.addLast(task);
 
     final runResult = task.run();
-    if (runResult is ResultFailure) {
+    if (runResult is NegativeResult) {
       log('Task run failed: $runResult');
       task.dispose();
     }

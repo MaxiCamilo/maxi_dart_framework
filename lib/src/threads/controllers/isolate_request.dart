@@ -15,16 +15,14 @@ class IsolateRequest<T> with DisposableMixin, WithLifecycleScopeMixin implements
   StreamController<dynamic>? _interactiveController;
 
   late final Timer _initTimeoutTimer = heart.attachTimer(
-    Timer(
-      Duration(seconds: 30),
-      () {
-        log('Initialization timeout reached for request with unique ID $uniqueID, cancelling request');
-        if (!_completer.isCompleted) {
-          _completer.complete(Result.error('The thread did not acknowledge the task in time, so it will be canceled'));
-        }
-        dispose();
-      },
-    ),
+    time: Duration(seconds: 30),
+    action: () {
+      log('Initialization timeout reached for request with unique ID $uniqueID, cancelling request');
+      if (!_completer.isCompleted) {
+        _completer.complete(Result.error('The thread did not acknowledge the task in time, so it will be canceled'));
+      }
+      dispose();
+    },
   );
 
   IsolateRequest({required this.channel, required this.uniqueID});
@@ -54,14 +52,14 @@ class IsolateRequest<T> with DisposableMixin, WithLifecycleScopeMixin implements
 
     checkDisposed().$;
 
-    if (result is ResultValue) {
+    if (result is SuccessfulResult) {
       final value = result.value;
       if (value is T) {
         _completer.complete(Result.value(value));
       } else {
         _completer.complete(Result.error('Result value type does not match the expected type'));
       }
-    } else if (result is ResultFailure) {
+    } else if (result is NegativeResult) {
       _completer.complete(result.cast<T>());
     } else {
       _completer.complete(Result.error('Unknown result type'));

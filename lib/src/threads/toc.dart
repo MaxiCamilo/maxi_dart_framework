@@ -4,6 +4,14 @@ import 'package:maxi_dart_framework/maxi_dart_framework.dart';
 import 'package:maxi_dart_framework/src/threads/toc/main_isolate_instance.dart';
 import 'package:meta/meta.dart';
 
+FutureResult<T> toc$<T>({InvocationParameters parameters = InvocationParameters.empty, required FutureResultOr<T> Function(InvocationParameters) function}) {
+  return Toc.execute<T>(parameters: parameters, function: function);
+}
+
+Future<T> toc$_<T>({InvocationParameters parameters = InvocationParameters.empty, required FutureResultOr<T> Function(InvocationParameters) function}) {
+  return $$_(toc$<T>(parameters: parameters, function: function));
+}
+
 abstract interface class IToc {
   //FutureResult<TaskInstance<T>> buildExecution<T>({InvocationParameters parameters = InvocationParameters.empty, required FutureResultOr<T> Function(InvocationParameters) function});
   FutureResult<T> execute<T>({InvocationParameters parameters = InvocationParameters.empty, required FutureResultOr<T> Function(InvocationParameters) function});
@@ -12,6 +20,8 @@ abstract interface class IToc {
 
   Future<Result<R>> invokeSharedValue<T, R>(String name, FutureOr<Result<R>> Function(T) callback);
   Future<Result<void>> setSharedOperatorValue<T extends Disposable>(String name, T value, [bool disposePrevious = false]);
+
+  Future<Channel<S, R>> buildSharedChannel<R,S>(Channel<R,S> channel);
 }
 
 mixin Toc {

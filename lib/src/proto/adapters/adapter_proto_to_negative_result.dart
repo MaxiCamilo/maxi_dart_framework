@@ -1,16 +1,16 @@
 import 'package:maxi_dart_framework/maxi_dart_framework.dart';
 
-extension AdapterProtoToNegativeResultExtension on ProtoNegativeResult {
-  NegativeResult toNegativeResult() {
+extension AdapterProtoToInvalidationExtension on ProtoInvalidation {
+  Invalidation toInvalidation() {
     final oration = message.toOration();
 
-    return NegativeResult(message: oration);
+    return Invalidation(message: oration);
   }
 }
 
-extension AdapterNegativeResultToProtoExtension on NegativeResult {
-  ProtoNegativeResult toProto() {
+extension AdapterInvalidationToProtoExtension on Invalidation {
+  ProtoInvalidation toProto() {
     final messageProto = message.toProto();
-    return ProtoNegativeResult(message: messageProto, errorCode: 1);
+    return ProtoInvalidation(message: messageProto, errorCode: 1);
   }
 }

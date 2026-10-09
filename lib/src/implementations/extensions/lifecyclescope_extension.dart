@@ -30,6 +30,30 @@ extension LifecycleScopeExtension on ILifecycleScope {
     return child;
   }
 
+  Result<Disposable> attachHeart(ILifecycleScope heart) {
+    if (isDisposed) {
+      return Result.error('LifecycleScope is already disposed. Heart will not be attached');
+    }
+
+    if (heart.isDisposed) {
+      return Result.error('Heart is already disposed. It will not be attached');
+    }
+
+    final disposable = attachChild(heart, (h) => h.dispose());
+    heart.onDispose(() {
+      disposable.dispose();
+    });
+
+    return Result.value(disposable);
+  }
+
+  Result<T> attachChildWithHeart<T extends WithLifecycleScope>(T child) {
+    final heartResult = attachHeart(child.heart);
+    if (heartResult is NegativeResult) return (heartResult as NegativeResult).cast<T>();
+
+    return Result.value(child);
+  }
+
   StreamController<T> attachStreamController<T>(StreamController<T> controller) {
     if (controller.isClosed) {
       log('StreamController is already closed. Skipping attachment');
@@ -57,7 +81,7 @@ extension LifecycleScopeExtension on ILifecycleScope {
     final subscription = volatileScope(
       message: const Oration('Failed to listen to the stream'),
       function: () => stream
-          .doOnCancel(()=> entry.dispose)
+          .doOnCancel(() => entry.dispose)
           .listen(
             onData,
             onError: onError,
@@ -72,7 +96,7 @@ extension LifecycleScopeExtension on ILifecycleScope {
 
     entry = attach(value: subscription, function: (s) => s.cancel()).$;
 
-    return ResultValue(subscription);
+    return SuccessfulResult(subscription);
   });
 
   Result<void> attachStreamSubscription(StreamSubscription subscription) => resultScope(() {
@@ -106,14 +130,35 @@ extension LifecycleScopeExtension on ILifecycleScope {
     return completer.future;
   }
 
-  Timer attachTimer(Timer timer) {
+  Timer attachTimer({required Duration time, required Function action, Function? onCancel, Function(bool)? onFinish}) {
     if (isDisposed) {
       log('LifecycleScope is already disposed. Cancelling Timer immediately');
-      timer.cancel();
-      return timer;
+
+      return Timer(Duration.zero, () {})..cancel();
     }
 
-    attach(value: timer, function: (t) => t.cancel()).$;
+    late final Disposable instance;
+
+    final timer = Timer(time, () {
+      instance.dispose();
+      action();
+      if (onFinish != null) {
+        onFinish(true);
+      }
+    });
+
+    instance = attach(
+      value: timer,
+      function: (t) {
+        t.cancel();
+        if (onCancel != null) {
+          onCancel();
+        }
+        if (onFinish != null) {
+          onFinish(false);
+        }
+      },
+    ).$;
 
     return timer;
   }

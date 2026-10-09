@@ -27,16 +27,14 @@ mixin SynchronousInitializationMixin implements SynchronousInitialization {
     try {
       final result = performInitialization();
 
-      if (result is ResultValue) {
+      if (result is SuccessfulResult) {
         _isInitialized = true;
       }
       _isInitializing = false;
       return result;
-    } catch(e,st) {
+    } catch (e, st) {
       _isInitializing = false;
       return ExceptionResult(exception: e, stackTrace: st);
-      
     }
-    
   }
 }

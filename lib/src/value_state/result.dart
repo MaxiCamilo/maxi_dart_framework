@@ -9,7 +9,7 @@ typedef EmptyResult = Result<void>;
 typedef FutureEmptyResult<T> = Future<Result<void>>;
 typedef FutureEmptyResultOr<T> = FutureOr<Result<void>>;
 
-const voidResult = ResultValue<void>(null);
+const voidResult = SuccessfulResult<void>(null);
 
 sealed class Result<T> {
   const Result();
@@ -17,42 +17,42 @@ sealed class Result<T> {
   static Result<void> get ok => voidResult;
 
   static Result<T> value<T>(T value) {
-    return ResultValue<T>(value);
+    return SuccessfulResult<T>(value);
   }
 
   static Result<T> error<T>(String s, [List<String>? args]) {
     if (args == null) {
-      return NegativeResult<T>(message: Oration(s));
+      return Invalidation<T>(message: Oration(s));
     } else {
-      return NegativeResult<T>(message: Oration(s, args));
+      return Invalidation<T>(message: Oration(s, args));
     }
   }
 }
 
-final class ResultValue<T> extends Result<T> {
+final class SuccessfulResult<T> extends Result<T> {
   final T value;
-  const ResultValue(this.value);
+  const SuccessfulResult(this.value);
 }
 
-sealed class ResultFailure<T> extends Result<T> {
+sealed class NegativeResult<T> extends Result<T> {
   Oration get message;
 
   const new();
 
-  ResultFailure<R> cast<R>();
+  NegativeResult<R> cast<R>();
 }
 
-final class NegativeResult<T> extends ResultFailure<T> {
+final class Invalidation<T> extends NegativeResult<T> {
   @override
   final Oration message;
 
   const new({required this.message});
 
   @override
-  NegativeResult<R> cast<R>() => NegativeResult<R>(message: message);
+  Invalidation<R> cast<R>() => Invalidation<R>(message: message);
 }
 
-final class CancelationResult<T> extends ResultFailure<T> {
+final class CancelationResult<T> extends NegativeResult<T> {
   @override
   final Oration message;
 
@@ -64,7 +64,7 @@ final class CancelationResult<T> extends ResultFailure<T> {
   CancelationResult<R> cast<R>() => CancelationResult<R>(message);
 }
 
-final class ExceptionResult<T> extends ResultFailure<T> {
+final class ExceptionResult<T> extends NegativeResult<T> {
   @override
   final Oration message;
   final Object exception;

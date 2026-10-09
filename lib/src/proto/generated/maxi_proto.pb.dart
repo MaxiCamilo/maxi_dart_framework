@@ -34,25 +34,17 @@ class ProtoDartDecorator extends $pb.GeneratedMessage {
 
   ProtoDartDecorator._();
 
-  factory ProtoDartDecorator.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory ProtoDartDecorator.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+  factory ProtoDartDecorator.fromBuffer($core.List<$core.int> data, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(data, registry);
+  factory ProtoDartDecorator.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ProtoDartDecorator',
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ProtoDartDecorator', createEmptyInstance: create)
     ..pPS(1, _omitFieldNames ? '' : 'dartDecorators')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   ProtoDartDecorator clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  ProtoDartDecorator copyWith(void Function(ProtoDartDecorator) updates) =>
-      super.copyWith((message) => updates(message as ProtoDartDecorator))
-          as ProtoDartDecorator;
+  ProtoDartDecorator copyWith(void Function(ProtoDartDecorator) updates) => super.copyWith((message) => updates(message as ProtoDartDecorator)) as ProtoDartDecorator;
 
   @$core.override
   $pb.BuilderInfo get info_ => _i;
@@ -62,8 +54,7 @@ class ProtoDartDecorator extends $pb.GeneratedMessage {
   @$core.override
   ProtoDartDecorator createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
-  static ProtoDartDecorator getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ProtoDartDecorator>(create);
+  static ProtoDartDecorator getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ProtoDartDecorator>(create);
   static ProtoDartDecorator? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -85,28 +76,19 @@ class ProtoDartClass extends $pb.GeneratedMessage {
 
   ProtoDartClass._();
 
-  factory ProtoDartClass.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory ProtoDartClass.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+  factory ProtoDartClass.fromBuffer($core.List<$core.int> data, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(data, registry);
+  factory ProtoDartClass.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ProtoDartClass',
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ProtoDartClass', createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'name')
     ..aOS(2, _omitFieldNames ? '' : 'dartType')
-    ..pPM<ProtoDartDecorator>(3, _omitFieldNames ? '' : 'decorators',
-        subBuilder: ProtoDartDecorator.create)
+    ..pPM<ProtoDartDecorator>(3, _omitFieldNames ? '' : 'decorators', subBuilder: ProtoDartDecorator.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   ProtoDartClass clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  ProtoDartClass copyWith(void Function(ProtoDartClass) updates) =>
-      super.copyWith((message) => updates(message as ProtoDartClass))
-          as ProtoDartClass;
+  ProtoDartClass copyWith(void Function(ProtoDartClass) updates) => super.copyWith((message) => updates(message as ProtoDartClass)) as ProtoDartClass;
 
   @$core.override
   $pb.BuilderInfo get info_ => _i;
@@ -116,8 +98,7 @@ class ProtoDartClass extends $pb.GeneratedMessage {
   @$core.override
   ProtoDartClass createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
-  static ProtoDartClass getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ProtoDartClass>(create);
+  static ProtoDartClass getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ProtoDartClass>(create);
   static ProtoDartClass? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -157,28 +138,19 @@ class ProtoDartField extends $pb.GeneratedMessage {
 
   ProtoDartField._();
 
-  factory ProtoDartField.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory ProtoDartField.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+  factory ProtoDartField.fromBuffer($core.List<$core.int> data, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(data, registry);
+  factory ProtoDartField.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ProtoDartField',
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ProtoDartField', createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'name')
     ..aOS(2, _omitFieldNames ? '' : 'dartType')
-    ..pPM<ProtoDartDecorator>(3, _omitFieldNames ? '' : 'decorators',
-        subBuilder: ProtoDartDecorator.create)
+    ..pPM<ProtoDartDecorator>(3, _omitFieldNames ? '' : 'decorators', subBuilder: ProtoDartDecorator.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   ProtoDartField clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  ProtoDartField copyWith(void Function(ProtoDartField) updates) =>
-      super.copyWith((message) => updates(message as ProtoDartField))
-          as ProtoDartField;
+  ProtoDartField copyWith(void Function(ProtoDartField) updates) => super.copyWith((message) => updates(message as ProtoDartField)) as ProtoDartField;
 
   @$core.override
   $pb.BuilderInfo get info_ => _i;
@@ -188,8 +160,7 @@ class ProtoDartField extends $pb.GeneratedMessage {
   @$core.override
   ProtoDartField createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
-  static ProtoDartField getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ProtoDartField>(create);
+  static ProtoDartField getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ProtoDartField>(create);
   static ProtoDartField? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -231,29 +202,20 @@ class ProtoDartEnum extends $pb.GeneratedMessage {
 
   ProtoDartEnum._();
 
-  factory ProtoDartEnum.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory ProtoDartEnum.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+  factory ProtoDartEnum.fromBuffer($core.List<$core.int> data, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(data, registry);
+  factory ProtoDartEnum.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ProtoDartEnum',
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ProtoDartEnum', createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'name')
     ..aOS(2, _omitFieldNames ? '' : 'prefix')
     ..aOS(3, _omitFieldNames ? '' : 'dartType')
-    ..pPM<ProtoDartDecorator>(4, _omitFieldNames ? '' : 'decorators',
-        subBuilder: ProtoDartDecorator.create)
+    ..pPM<ProtoDartDecorator>(4, _omitFieldNames ? '' : 'decorators', subBuilder: ProtoDartDecorator.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   ProtoDartEnum clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  ProtoDartEnum copyWith(void Function(ProtoDartEnum) updates) =>
-      super.copyWith((message) => updates(message as ProtoDartEnum))
-          as ProtoDartEnum;
+  ProtoDartEnum copyWith(void Function(ProtoDartEnum) updates) => super.copyWith((message) => updates(message as ProtoDartEnum)) as ProtoDartEnum;
 
   @$core.override
   $pb.BuilderInfo get info_ => _i;
@@ -263,8 +225,7 @@ class ProtoDartEnum extends $pb.GeneratedMessage {
   @$core.override
   ProtoDartEnum createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
-  static ProtoDartEnum getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ProtoDartEnum>(create);
+  static ProtoDartEnum getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ProtoDartEnum>(create);
   static ProtoDartEnum? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -313,28 +274,19 @@ class ProtoDartEnumValue extends $pb.GeneratedMessage {
 
   ProtoDartEnumValue._();
 
-  factory ProtoDartEnumValue.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory ProtoDartEnumValue.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+  factory ProtoDartEnumValue.fromBuffer($core.List<$core.int> data, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(data, registry);
+  factory ProtoDartEnumValue.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ProtoDartEnumValue',
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ProtoDartEnumValue', createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'name')
     ..aI(2, _omitFieldNames ? '' : 'number')
-    ..pPM<ProtoDartDecorator>(3, _omitFieldNames ? '' : 'decorators',
-        subBuilder: ProtoDartDecorator.create)
+    ..pPM<ProtoDartDecorator>(3, _omitFieldNames ? '' : 'decorators', subBuilder: ProtoDartDecorator.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   ProtoDartEnumValue clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  ProtoDartEnumValue copyWith(void Function(ProtoDartEnumValue) updates) =>
-      super.copyWith((message) => updates(message as ProtoDartEnumValue))
-          as ProtoDartEnumValue;
+  ProtoDartEnumValue copyWith(void Function(ProtoDartEnumValue) updates) => super.copyWith((message) => updates(message as ProtoDartEnumValue)) as ProtoDartEnumValue;
 
   @$core.override
   $pb.BuilderInfo get info_ => _i;
@@ -344,8 +296,7 @@ class ProtoDartEnumValue extends $pb.GeneratedMessage {
   @$core.override
   ProtoDartEnumValue createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
-  static ProtoDartEnumValue getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ProtoDartEnumValue>(create);
+  static ProtoDartEnumValue getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ProtoDartEnumValue>(create);
   static ProtoDartEnumValue? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -385,16 +336,10 @@ class ProtoOration extends $pb.GeneratedMessage {
 
   ProtoOration._();
 
-  factory ProtoOration.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory ProtoOration.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+  factory ProtoOration.fromBuffer($core.List<$core.int> data, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(data, registry);
+  factory ProtoOration.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ProtoOration',
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ProtoOration', createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'tokenId')
     ..aOS(2, _omitFieldNames ? '' : 'text')
     ..pPS(3, _omitFieldNames ? '' : 'textParts')
@@ -403,9 +348,7 @@ class ProtoOration extends $pb.GeneratedMessage {
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   ProtoOration clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  ProtoOration copyWith(void Function(ProtoOration) updates) =>
-      super.copyWith((message) => updates(message as ProtoOration))
-          as ProtoOration;
+  ProtoOration copyWith(void Function(ProtoOration) updates) => super.copyWith((message) => updates(message as ProtoOration)) as ProtoOration;
 
   @$core.override
   $pb.BuilderInfo get info_ => _i;
@@ -415,8 +358,7 @@ class ProtoOration extends $pb.GeneratedMessage {
   @$core.override
   ProtoOration createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
-  static ProtoOration getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ProtoOration>(create);
+  static ProtoOration getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ProtoOration>(create);
   static ProtoOration? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -441,8 +383,8 @@ class ProtoOration extends $pb.GeneratedMessage {
   $pb.PbList<$core.String> get textParts => $_getList(2);
 }
 
-class ProtoNegativeResult extends $pb.GeneratedMessage {
-  factory ProtoNegativeResult({
+class ProtoInvalidation extends $pb.GeneratedMessage {
+  factory ProtoInvalidation({
     $core.int? errorCode,
     ProtoOration? message,
   }) {
@@ -452,41 +394,31 @@ class ProtoNegativeResult extends $pb.GeneratedMessage {
     return result;
   }
 
-  ProtoNegativeResult._();
+  ProtoInvalidation._();
 
-  factory ProtoNegativeResult.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory ProtoNegativeResult.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+  factory ProtoInvalidation.fromBuffer($core.List<$core.int> data, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(data, registry);
+  factory ProtoInvalidation.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ProtoNegativeResult',
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ProtoInvalidation', createEmptyInstance: create)
     ..aI(1, _omitFieldNames ? '' : 'errorCode')
-    ..aOM<ProtoOration>(2, _omitFieldNames ? '' : 'message',
-        subBuilder: ProtoOration.create)
+    ..aOM<ProtoOration>(2, _omitFieldNames ? '' : 'message', subBuilder: ProtoOration.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  ProtoNegativeResult clone() => deepCopy();
+  ProtoInvalidation clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  ProtoNegativeResult copyWith(void Function(ProtoNegativeResult) updates) =>
-      super.copyWith((message) => updates(message as ProtoNegativeResult))
-          as ProtoNegativeResult;
+  ProtoInvalidation copyWith(void Function(ProtoInvalidation) updates) => super.copyWith((message) => updates(message as ProtoInvalidation)) as ProtoInvalidation;
 
   @$core.override
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static ProtoNegativeResult create() => ProtoNegativeResult._();
+  static ProtoInvalidation create() => ProtoInvalidation._();
   @$core.override
-  ProtoNegativeResult createEmptyInstance() => create();
+  ProtoInvalidation createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
-  static ProtoNegativeResult getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ProtoNegativeResult>(create);
-  static ProtoNegativeResult? _defaultInstance;
+  static ProtoInvalidation getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ProtoInvalidation>(create);
+  static ProtoInvalidation? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.int get errorCode => $_getIZ(0);
@@ -515,7 +447,7 @@ class ProtoResult extends $pb.GeneratedMessage {
   factory ProtoResult({
     $core.bool? itsCorrect,
     $2.Any? content,
-    ProtoNegativeResult? error,
+    ProtoInvalidation? error,
   }) {
     final result = create();
     if (itsCorrect != null) result.itsCorrect = itsCorrect;
@@ -526,36 +458,21 @@ class ProtoResult extends $pb.GeneratedMessage {
 
   ProtoResult._();
 
-  factory ProtoResult.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory ProtoResult.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+  factory ProtoResult.fromBuffer($core.List<$core.int> data, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(data, registry);
+  factory ProtoResult.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
-  static const $core.Map<$core.int, ProtoResult_Value> _ProtoResult_ValueByTag =
-      {
-    2: ProtoResult_Value.content,
-    3: ProtoResult_Value.error,
-    0: ProtoResult_Value.notSet
-  };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ProtoResult',
-      createEmptyInstance: create)
+  static const $core.Map<$core.int, ProtoResult_Value> _ProtoResult_ValueByTag = {2: ProtoResult_Value.content, 3: ProtoResult_Value.error, 0: ProtoResult_Value.notSet};
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ProtoResult', createEmptyInstance: create)
     ..oo(0, [2, 3])
     ..aOB(1, _omitFieldNames ? '' : 'itsCorrect')
-    ..aOM<$2.Any>(2, _omitFieldNames ? '' : 'content',
-        subBuilder: $2.Any.new)
-    ..aOM<ProtoNegativeResult>(3, _omitFieldNames ? '' : 'error',
-        subBuilder: ProtoNegativeResult.create)
+    ..aOM<$2.Any>(2, _omitFieldNames ? '' : 'content', subBuilder: $2.Any.new)
+    ..aOM<ProtoInvalidation>(3, _omitFieldNames ? '' : 'error', subBuilder: ProtoInvalidation.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   ProtoResult clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  ProtoResult copyWith(void Function(ProtoResult) updates) =>
-      super.copyWith((message) => updates(message as ProtoResult))
-          as ProtoResult;
+  ProtoResult copyWith(void Function(ProtoResult) updates) => super.copyWith((message) => updates(message as ProtoResult)) as ProtoResult;
 
   @$core.override
   $pb.BuilderInfo get info_ => _i;
@@ -565,8 +482,7 @@ class ProtoResult extends $pb.GeneratedMessage {
   @$core.override
   ProtoResult createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
-  static ProtoResult getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ProtoResult>(create);
+  static ProtoResult getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ProtoResult>(create);
   static ProtoResult? _defaultInstance;
 
   @$pb.TagNumber(2)
@@ -597,15 +513,15 @@ class ProtoResult extends $pb.GeneratedMessage {
   $2.Any ensureContent() => $_ensure(1);
 
   @$pb.TagNumber(3)
-  ProtoNegativeResult get error => $_getN(2);
+  ProtoInvalidation get error => $_getN(2);
   @$pb.TagNumber(3)
-  set error(ProtoNegativeResult value) => $_setField(3, value);
+  set error(ProtoInvalidation value) => $_setField(3, value);
   @$pb.TagNumber(3)
   $core.bool hasError() => $_has(2);
   @$pb.TagNumber(3)
   void clearError() => $_clearField(3);
   @$pb.TagNumber(3)
-  ProtoNegativeResult ensureError() => $_ensure(2);
+  ProtoInvalidation ensureError() => $_ensure(2);
 }
 
 enum ProtoVoidResult_Value { content, error, notSet }
@@ -614,7 +530,7 @@ class ProtoVoidResult extends $pb.GeneratedMessage {
   factory ProtoVoidResult({
     $core.bool? itsCorrect,
     $0.Empty? content,
-    ProtoNegativeResult? error,
+    ProtoInvalidation? error,
   }) {
     final result = create();
     if (itsCorrect != null) result.itsCorrect = itsCorrect;
@@ -625,36 +541,21 @@ class ProtoVoidResult extends $pb.GeneratedMessage {
 
   ProtoVoidResult._();
 
-  factory ProtoVoidResult.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory ProtoVoidResult.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+  factory ProtoVoidResult.fromBuffer($core.List<$core.int> data, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(data, registry);
+  factory ProtoVoidResult.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
-  static const $core.Map<$core.int, ProtoVoidResult_Value>
-      _ProtoVoidResult_ValueByTag = {
-    2: ProtoVoidResult_Value.content,
-    3: ProtoVoidResult_Value.error,
-    0: ProtoVoidResult_Value.notSet
-  };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ProtoVoidResult',
-      createEmptyInstance: create)
+  static const $core.Map<$core.int, ProtoVoidResult_Value> _ProtoVoidResult_ValueByTag = {2: ProtoVoidResult_Value.content, 3: ProtoVoidResult_Value.error, 0: ProtoVoidResult_Value.notSet};
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ProtoVoidResult', createEmptyInstance: create)
     ..oo(0, [2, 3])
     ..aOB(1, _omitFieldNames ? '' : 'itsCorrect')
-    ..aOM<$0.Empty>(2, _omitFieldNames ? '' : 'content',
-        subBuilder: $0.Empty.new)
-    ..aOM<ProtoNegativeResult>(3, _omitFieldNames ? '' : 'error',
-        subBuilder: ProtoNegativeResult.new)
+    ..aOM<$0.Empty>(2, _omitFieldNames ? '' : 'content', subBuilder: $0.Empty.new)
+    ..aOM<ProtoInvalidation>(3, _omitFieldNames ? '' : 'error', subBuilder: ProtoInvalidation.new)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   ProtoVoidResult clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  ProtoVoidResult copyWith(void Function(ProtoVoidResult) updates) =>
-      super.copyWith((message) => updates(message as ProtoVoidResult))
-          as ProtoVoidResult;
+  ProtoVoidResult copyWith(void Function(ProtoVoidResult) updates) => super.copyWith((message) => updates(message as ProtoVoidResult)) as ProtoVoidResult;
 
   @$core.override
   $pb.BuilderInfo get info_ => _i;
@@ -664,14 +565,12 @@ class ProtoVoidResult extends $pb.GeneratedMessage {
   @$core.override
   ProtoVoidResult createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
-  static ProtoVoidResult getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ProtoVoidResult>(create);
+  static ProtoVoidResult getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ProtoVoidResult>(create);
   static ProtoVoidResult? _defaultInstance;
 
   @$pb.TagNumber(2)
   @$pb.TagNumber(3)
-  ProtoVoidResult_Value whichValue() =>
-      _ProtoVoidResult_ValueByTag[$_whichOneof(0)]!;
+  ProtoVoidResult_Value whichValue() => _ProtoVoidResult_ValueByTag[$_whichOneof(0)]!;
   @$pb.TagNumber(2)
   @$pb.TagNumber(3)
   void clearValue() => $_clearField($_whichOneof(0));
@@ -697,15 +596,15 @@ class ProtoVoidResult extends $pb.GeneratedMessage {
   $0.Empty ensureContent() => $_ensure(1);
 
   @$pb.TagNumber(3)
-  ProtoNegativeResult get error => $_getN(2);
+  ProtoInvalidation get error => $_getN(2);
   @$pb.TagNumber(3)
-  set error(ProtoNegativeResult value) => $_setField(3, value);
+  set error(ProtoInvalidation value) => $_setField(3, value);
   @$pb.TagNumber(3)
   $core.bool hasError() => $_has(2);
   @$pb.TagNumber(3)
   void clearError() => $_clearField(3);
   @$pb.TagNumber(3)
-  ProtoNegativeResult ensureError() => $_ensure(2);
+  ProtoInvalidation ensureError() => $_ensure(2);
 }
 
 enum ProtoVoidStream_Value { text, completed, error, notSet }
@@ -715,7 +614,7 @@ class ProtoVoidStream extends $pb.GeneratedMessage {
     MaxiProtoStreamStatus? status,
     ProtoOration? text,
     $0.Empty? completed,
-    ProtoNegativeResult? error,
+    ProtoInvalidation? error,
   }) {
     final result = create();
     if (status != null) result.status = status;
@@ -727,40 +626,22 @@ class ProtoVoidStream extends $pb.GeneratedMessage {
 
   ProtoVoidStream._();
 
-  factory ProtoVoidStream.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory ProtoVoidStream.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+  factory ProtoVoidStream.fromBuffer($core.List<$core.int> data, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(data, registry);
+  factory ProtoVoidStream.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
-  static const $core.Map<$core.int, ProtoVoidStream_Value>
-      _ProtoVoidStream_ValueByTag = {
-    2: ProtoVoidStream_Value.text,
-    3: ProtoVoidStream_Value.completed,
-    4: ProtoVoidStream_Value.error,
-    0: ProtoVoidStream_Value.notSet
-  };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ProtoVoidStream',
-      createEmptyInstance: create)
+  static const $core.Map<$core.int, ProtoVoidStream_Value> _ProtoVoidStream_ValueByTag = {2: ProtoVoidStream_Value.text, 3: ProtoVoidStream_Value.completed, 4: ProtoVoidStream_Value.error, 0: ProtoVoidStream_Value.notSet};
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ProtoVoidStream', createEmptyInstance: create)
     ..oo(0, [2, 3, 4])
-    ..aE<MaxiProtoStreamStatus>(1, _omitFieldNames ? '' : 'status',
-        enumValues: MaxiProtoStreamStatus.values)
-    ..aOM<ProtoOration>(2, _omitFieldNames ? '' : 'text',
-        subBuilder: ProtoOration.create)
-    ..aOM<$0.Empty>(3, _omitFieldNames ? '' : 'completed',
-        subBuilder: $0.Empty.new)
-    ..aOM<ProtoNegativeResult>(4, _omitFieldNames ? '' : 'error',
-        subBuilder: ProtoNegativeResult.create)
+    ..aE<MaxiProtoStreamStatus>(1, _omitFieldNames ? '' : 'status', enumValues: MaxiProtoStreamStatus.values)
+    ..aOM<ProtoOration>(2, _omitFieldNames ? '' : 'text', subBuilder: ProtoOration.create)
+    ..aOM<$0.Empty>(3, _omitFieldNames ? '' : 'completed', subBuilder: $0.Empty.new)
+    ..aOM<ProtoInvalidation>(4, _omitFieldNames ? '' : 'error', subBuilder: ProtoInvalidation.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   ProtoVoidStream clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  ProtoVoidStream copyWith(void Function(ProtoVoidStream) updates) =>
-      super.copyWith((message) => updates(message as ProtoVoidStream))
-          as ProtoVoidStream;
+  ProtoVoidStream copyWith(void Function(ProtoVoidStream) updates) => super.copyWith((message) => updates(message as ProtoVoidStream)) as ProtoVoidStream;
 
   @$core.override
   $pb.BuilderInfo get info_ => _i;
@@ -770,15 +651,13 @@ class ProtoVoidStream extends $pb.GeneratedMessage {
   @$core.override
   ProtoVoidStream createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
-  static ProtoVoidStream getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ProtoVoidStream>(create);
+  static ProtoVoidStream getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ProtoVoidStream>(create);
   static ProtoVoidStream? _defaultInstance;
 
   @$pb.TagNumber(2)
   @$pb.TagNumber(3)
   @$pb.TagNumber(4)
-  ProtoVoidStream_Value whichValue() =>
-      _ProtoVoidStream_ValueByTag[$_whichOneof(0)]!;
+  ProtoVoidStream_Value whichValue() => _ProtoVoidStream_ValueByTag[$_whichOneof(0)]!;
   @$pb.TagNumber(2)
   @$pb.TagNumber(3)
   @$pb.TagNumber(4)
@@ -816,15 +695,15 @@ class ProtoVoidStream extends $pb.GeneratedMessage {
   $0.Empty ensureCompleted() => $_ensure(2);
 
   @$pb.TagNumber(4)
-  ProtoNegativeResult get error => $_getN(3);
+  ProtoInvalidation get error => $_getN(3);
   @$pb.TagNumber(4)
-  set error(ProtoNegativeResult value) => $_setField(4, value);
+  set error(ProtoInvalidation value) => $_setField(4, value);
   @$pb.TagNumber(4)
   $core.bool hasError() => $_has(3);
   @$pb.TagNumber(4)
   void clearError() => $_clearField(4);
   @$pb.TagNumber(4)
-  ProtoNegativeResult ensureError() => $_ensure(3);
+  ProtoInvalidation ensureError() => $_ensure(3);
 }
 
 enum ProtoJsonResult_Value { content, error, notSet }
@@ -833,7 +712,7 @@ class ProtoJsonResult extends $pb.GeneratedMessage {
   factory ProtoJsonResult({
     $core.bool? itsCorrect,
     $core.String? content,
-    ProtoNegativeResult? error,
+    ProtoInvalidation? error,
   }) {
     final result = create();
     if (itsCorrect != null) result.itsCorrect = itsCorrect;
@@ -844,35 +723,21 @@ class ProtoJsonResult extends $pb.GeneratedMessage {
 
   ProtoJsonResult._();
 
-  factory ProtoJsonResult.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory ProtoJsonResult.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+  factory ProtoJsonResult.fromBuffer($core.List<$core.int> data, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(data, registry);
+  factory ProtoJsonResult.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
-  static const $core.Map<$core.int, ProtoJsonResult_Value>
-      _ProtoJsonResult_ValueByTag = {
-    2: ProtoJsonResult_Value.content,
-    3: ProtoJsonResult_Value.error,
-    0: ProtoJsonResult_Value.notSet
-  };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ProtoJsonResult',
-      createEmptyInstance: create)
+  static const $core.Map<$core.int, ProtoJsonResult_Value> _ProtoJsonResult_ValueByTag = {2: ProtoJsonResult_Value.content, 3: ProtoJsonResult_Value.error, 0: ProtoJsonResult_Value.notSet};
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ProtoJsonResult', createEmptyInstance: create)
     ..oo(0, [2, 3])
     ..aOB(1, _omitFieldNames ? '' : 'itsCorrect')
     ..aOS(2, _omitFieldNames ? '' : 'content')
-    ..aOM<ProtoNegativeResult>(3, _omitFieldNames ? '' : 'error',
-        subBuilder: ProtoNegativeResult.create)
+    ..aOM<ProtoInvalidation>(3, _omitFieldNames ? '' : 'error', subBuilder: ProtoInvalidation.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   ProtoJsonResult clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  ProtoJsonResult copyWith(void Function(ProtoJsonResult) updates) =>
-      super.copyWith((message) => updates(message as ProtoJsonResult))
-          as ProtoJsonResult;
+  ProtoJsonResult copyWith(void Function(ProtoJsonResult) updates) => super.copyWith((message) => updates(message as ProtoJsonResult)) as ProtoJsonResult;
 
   @$core.override
   $pb.BuilderInfo get info_ => _i;
@@ -882,14 +747,12 @@ class ProtoJsonResult extends $pb.GeneratedMessage {
   @$core.override
   ProtoJsonResult createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
-  static ProtoJsonResult getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ProtoJsonResult>(create);
+  static ProtoJsonResult getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ProtoJsonResult>(create);
   static ProtoJsonResult? _defaultInstance;
 
   @$pb.TagNumber(2)
   @$pb.TagNumber(3)
-  ProtoJsonResult_Value whichValue() =>
-      _ProtoJsonResult_ValueByTag[$_whichOneof(0)]!;
+  ProtoJsonResult_Value whichValue() => _ProtoJsonResult_ValueByTag[$_whichOneof(0)]!;
   @$pb.TagNumber(2)
   @$pb.TagNumber(3)
   void clearValue() => $_clearField($_whichOneof(0));
@@ -913,15 +776,15 @@ class ProtoJsonResult extends $pb.GeneratedMessage {
   void clearContent() => $_clearField(2);
 
   @$pb.TagNumber(3)
-  ProtoNegativeResult get error => $_getN(2);
+  ProtoInvalidation get error => $_getN(2);
   @$pb.TagNumber(3)
-  set error(ProtoNegativeResult value) => $_setField(3, value);
+  set error(ProtoInvalidation value) => $_setField(3, value);
   @$pb.TagNumber(3)
   $core.bool hasError() => $_has(2);
   @$pb.TagNumber(3)
   void clearError() => $_clearField(3);
   @$pb.TagNumber(3)
-  ProtoNegativeResult ensureError() => $_ensure(2);
+  ProtoInvalidation ensureError() => $_ensure(2);
 }
 
 enum ProtoJsonStream_Value { text, completed, error, notSet }
@@ -931,7 +794,7 @@ class ProtoJsonStream extends $pb.GeneratedMessage {
     MaxiProtoStreamStatus? status,
     ProtoOration? text,
     $core.String? completed,
-    ProtoNegativeResult? error,
+    ProtoInvalidation? error,
   }) {
     final result = create();
     if (status != null) result.status = status;
@@ -943,39 +806,22 @@ class ProtoJsonStream extends $pb.GeneratedMessage {
 
   ProtoJsonStream._();
 
-  factory ProtoJsonStream.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory ProtoJsonStream.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+  factory ProtoJsonStream.fromBuffer($core.List<$core.int> data, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(data, registry);
+  factory ProtoJsonStream.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
-  static const $core.Map<$core.int, ProtoJsonStream_Value>
-      _ProtoJsonStream_ValueByTag = {
-    2: ProtoJsonStream_Value.text,
-    3: ProtoJsonStream_Value.completed,
-    4: ProtoJsonStream_Value.error,
-    0: ProtoJsonStream_Value.notSet
-  };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ProtoJsonStream',
-      createEmptyInstance: create)
+  static const $core.Map<$core.int, ProtoJsonStream_Value> _ProtoJsonStream_ValueByTag = {2: ProtoJsonStream_Value.text, 3: ProtoJsonStream_Value.completed, 4: ProtoJsonStream_Value.error, 0: ProtoJsonStream_Value.notSet};
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ProtoJsonStream', createEmptyInstance: create)
     ..oo(0, [2, 3, 4])
-    ..aE<MaxiProtoStreamStatus>(1, _omitFieldNames ? '' : 'status',
-        enumValues: MaxiProtoStreamStatus.values)
-    ..aOM<ProtoOration>(2, _omitFieldNames ? '' : 'text',
-        subBuilder: ProtoOration.create)
+    ..aE<MaxiProtoStreamStatus>(1, _omitFieldNames ? '' : 'status', enumValues: MaxiProtoStreamStatus.values)
+    ..aOM<ProtoOration>(2, _omitFieldNames ? '' : 'text', subBuilder: ProtoOration.create)
     ..aOS(3, _omitFieldNames ? '' : 'completed')
-    ..aOM<ProtoNegativeResult>(4, _omitFieldNames ? '' : 'error',
-        subBuilder: ProtoNegativeResult.create)
+    ..aOM<ProtoInvalidation>(4, _omitFieldNames ? '' : 'error', subBuilder: ProtoInvalidation.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   ProtoJsonStream clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  ProtoJsonStream copyWith(void Function(ProtoJsonStream) updates) =>
-      super.copyWith((message) => updates(message as ProtoJsonStream))
-          as ProtoJsonStream;
+  ProtoJsonStream copyWith(void Function(ProtoJsonStream) updates) => super.copyWith((message) => updates(message as ProtoJsonStream)) as ProtoJsonStream;
 
   @$core.override
   $pb.BuilderInfo get info_ => _i;
@@ -985,15 +831,13 @@ class ProtoJsonStream extends $pb.GeneratedMessage {
   @$core.override
   ProtoJsonStream createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
-  static ProtoJsonStream getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ProtoJsonStream>(create);
+  static ProtoJsonStream getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ProtoJsonStream>(create);
   static ProtoJsonStream? _defaultInstance;
 
   @$pb.TagNumber(2)
   @$pb.TagNumber(3)
   @$pb.TagNumber(4)
-  ProtoJsonStream_Value whichValue() =>
-      _ProtoJsonStream_ValueByTag[$_whichOneof(0)]!;
+  ProtoJsonStream_Value whichValue() => _ProtoJsonStream_ValueByTag[$_whichOneof(0)]!;
   @$pb.TagNumber(2)
   @$pb.TagNumber(3)
   @$pb.TagNumber(4)
@@ -1029,15 +873,15 @@ class ProtoJsonStream extends $pb.GeneratedMessage {
   void clearCompleted() => $_clearField(3);
 
   @$pb.TagNumber(4)
-  ProtoNegativeResult get error => $_getN(3);
+  ProtoInvalidation get error => $_getN(3);
   @$pb.TagNumber(4)
-  set error(ProtoNegativeResult value) => $_setField(4, value);
+  set error(ProtoInvalidation value) => $_setField(4, value);
   @$pb.TagNumber(4)
   $core.bool hasError() => $_has(3);
   @$pb.TagNumber(4)
   void clearError() => $_clearField(4);
   @$pb.TagNumber(4)
-  ProtoNegativeResult ensureError() => $_ensure(3);
+  ProtoInvalidation ensureError() => $_ensure(3);
 }
 
 class EmptyRequest extends $pb.GeneratedMessage {
@@ -1045,24 +889,15 @@ class EmptyRequest extends $pb.GeneratedMessage {
 
   EmptyRequest._();
 
-  factory EmptyRequest.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory EmptyRequest.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+  factory EmptyRequest.fromBuffer($core.List<$core.int> data, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(data, registry);
+  factory EmptyRequest.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'EmptyRequest',
-      createEmptyInstance: create)
-    ..hasRequiredFields = false;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'EmptyRequest', createEmptyInstance: create)..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   EmptyRequest clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  EmptyRequest copyWith(void Function(EmptyRequest) updates) =>
-      super.copyWith((message) => updates(message as EmptyRequest))
-          as EmptyRequest;
+  EmptyRequest copyWith(void Function(EmptyRequest) updates) => super.copyWith((message) => updates(message as EmptyRequest)) as EmptyRequest;
 
   @$core.override
   $pb.BuilderInfo get info_ => _i;
@@ -1072,8 +907,7 @@ class EmptyRequest extends $pb.GeneratedMessage {
   @$core.override
   EmptyRequest createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
-  static EmptyRequest getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<EmptyRequest>(create);
+  static EmptyRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<EmptyRequest>(create);
   static EmptyRequest? _defaultInstance;
 }
 
@@ -1090,28 +924,18 @@ class ProtoJsonRequest extends $pb.GeneratedMessage {
 
   ProtoJsonRequest._();
 
-  factory ProtoJsonRequest.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory ProtoJsonRequest.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+  factory ProtoJsonRequest.fromBuffer($core.List<$core.int> data, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(data, registry);
+  factory ProtoJsonRequest.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ProtoJsonRequest',
-      createEmptyInstance: create)
-    ..a<$fixnum.Int64>(
-        1, _omitFieldNames ? '' : 'identifier', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ProtoJsonRequest', createEmptyInstance: create)
+    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'identifier', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..aOS(2, _omitFieldNames ? '' : 'json')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   ProtoJsonRequest clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  ProtoJsonRequest copyWith(void Function(ProtoJsonRequest) updates) =>
-      super.copyWith((message) => updates(message as ProtoJsonRequest))
-          as ProtoJsonRequest;
+  ProtoJsonRequest copyWith(void Function(ProtoJsonRequest) updates) => super.copyWith((message) => updates(message as ProtoJsonRequest)) as ProtoJsonRequest;
 
   @$core.override
   $pb.BuilderInfo get info_ => _i;
@@ -1121,8 +945,7 @@ class ProtoJsonRequest extends $pb.GeneratedMessage {
   @$core.override
   ProtoJsonRequest createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
-  static ProtoJsonRequest getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ProtoJsonRequest>(create);
+  static ProtoJsonRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ProtoJsonRequest>(create);
   static ProtoJsonRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -1161,18 +984,11 @@ class SelectedFrom extends $pb.GeneratedMessage {
 
   SelectedFrom._();
 
-  factory SelectedFrom.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory SelectedFrom.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+  factory SelectedFrom.fromBuffer($core.List<$core.int> data, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(data, registry);
+  factory SelectedFrom.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'SelectedFrom',
-      createEmptyInstance: create)
-    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'from', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SelectedFrom', createEmptyInstance: create)
+    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'from', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..aI(2, _omitFieldNames ? '' : 'amount', fieldType: $pb.PbFieldType.OU3)
     ..aOS(3, _omitFieldNames ? '' : 'filter')
     ..aOB(4, _omitFieldNames ? '' : 'ascending')
@@ -1181,9 +997,7 @@ class SelectedFrom extends $pb.GeneratedMessage {
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   SelectedFrom clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  SelectedFrom copyWith(void Function(SelectedFrom) updates) =>
-      super.copyWith((message) => updates(message as SelectedFrom))
-          as SelectedFrom;
+  SelectedFrom copyWith(void Function(SelectedFrom) updates) => super.copyWith((message) => updates(message as SelectedFrom)) as SelectedFrom;
 
   @$core.override
   $pb.BuilderInfo get info_ => _i;
@@ -1193,8 +1007,7 @@ class SelectedFrom extends $pb.GeneratedMessage {
   @$core.override
   SelectedFrom createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
-  static SelectedFrom getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<SelectedFrom>(create);
+  static SelectedFrom getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SelectedFrom>(create);
   static SelectedFrom? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -1245,27 +1058,17 @@ class SelectMultipleIdentifiers extends $pb.GeneratedMessage {
 
   SelectMultipleIdentifiers._();
 
-  factory SelectMultipleIdentifiers.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory SelectMultipleIdentifiers.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+  factory SelectMultipleIdentifiers.fromBuffer($core.List<$core.int> data, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(data, registry);
+  factory SelectMultipleIdentifiers.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'SelectMultipleIdentifiers',
-      createEmptyInstance: create)
-    ..p<$fixnum.Int64>(
-        1, _omitFieldNames ? '' : 'selectedIds', $pb.PbFieldType.KU6)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SelectMultipleIdentifiers', createEmptyInstance: create)
+    ..p<$fixnum.Int64>(1, _omitFieldNames ? '' : 'selectedIds', $pb.PbFieldType.KU6)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   SelectMultipleIdentifiers clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  SelectMultipleIdentifiers copyWith(
-          void Function(SelectMultipleIdentifiers) updates) =>
-      super.copyWith((message) => updates(message as SelectMultipleIdentifiers))
-          as SelectMultipleIdentifiers;
+  SelectMultipleIdentifiers copyWith(void Function(SelectMultipleIdentifiers) updates) => super.copyWith((message) => updates(message as SelectMultipleIdentifiers)) as SelectMultipleIdentifiers;
 
   @$core.override
   $pb.BuilderInfo get info_ => _i;
@@ -1275,8 +1078,7 @@ class SelectMultipleIdentifiers extends $pb.GeneratedMessage {
   @$core.override
   SelectMultipleIdentifiers createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
-  static SelectMultipleIdentifiers getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<SelectMultipleIdentifiers>(create);
+  static SelectMultipleIdentifiers getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SelectMultipleIdentifiers>(create);
   static SelectMultipleIdentifiers? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -1294,28 +1096,17 @@ class SelectedIdentifierRequest extends $pb.GeneratedMessage {
 
   SelectedIdentifierRequest._();
 
-  factory SelectedIdentifierRequest.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory SelectedIdentifierRequest.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+  factory SelectedIdentifierRequest.fromBuffer($core.List<$core.int> data, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(data, registry);
+  factory SelectedIdentifierRequest.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'SelectedIdentifierRequest',
-      createEmptyInstance: create)
-    ..a<$fixnum.Int64>(
-        1, _omitFieldNames ? '' : 'identifier', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SelectedIdentifierRequest', createEmptyInstance: create)
+    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'identifier', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   SelectedIdentifierRequest clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  SelectedIdentifierRequest copyWith(
-          void Function(SelectedIdentifierRequest) updates) =>
-      super.copyWith((message) => updates(message as SelectedIdentifierRequest))
-          as SelectedIdentifierRequest;
+  SelectedIdentifierRequest copyWith(void Function(SelectedIdentifierRequest) updates) => super.copyWith((message) => updates(message as SelectedIdentifierRequest)) as SelectedIdentifierRequest;
 
   @$core.override
   $pb.BuilderInfo get info_ => _i;
@@ -1325,8 +1116,7 @@ class SelectedIdentifierRequest extends $pb.GeneratedMessage {
   @$core.override
   SelectedIdentifierRequest createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
-  static SelectedIdentifierRequest getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<SelectedIdentifierRequest>(create);
+  static SelectedIdentifierRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SelectedIdentifierRequest>(create);
   static SelectedIdentifierRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -1350,25 +1140,17 @@ class SelectByName extends $pb.GeneratedMessage {
 
   SelectByName._();
 
-  factory SelectByName.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory SelectByName.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+  factory SelectByName.fromBuffer($core.List<$core.int> data, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(data, registry);
+  factory SelectByName.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'SelectByName',
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SelectByName', createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'name')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   SelectByName clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  SelectByName copyWith(void Function(SelectByName) updates) =>
-      super.copyWith((message) => updates(message as SelectByName))
-          as SelectByName;
+  SelectByName copyWith(void Function(SelectByName) updates) => super.copyWith((message) => updates(message as SelectByName)) as SelectByName;
 
   @$core.override
   $pb.BuilderInfo get info_ => _i;
@@ -1378,8 +1160,7 @@ class SelectByName extends $pb.GeneratedMessage {
   @$core.override
   SelectByName createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
-  static SelectByName getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<SelectByName>(create);
+  static SelectByName getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SelectByName>(create);
   static SelectByName? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -1405,29 +1186,18 @@ class SelectByNameAndIdentifier extends $pb.GeneratedMessage {
 
   SelectByNameAndIdentifier._();
 
-  factory SelectByNameAndIdentifier.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory SelectByNameAndIdentifier.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+  factory SelectByNameAndIdentifier.fromBuffer($core.List<$core.int> data, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(data, registry);
+  factory SelectByNameAndIdentifier.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'SelectByNameAndIdentifier',
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SelectByNameAndIdentifier', createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'name')
-    ..a<$fixnum.Int64>(
-        2, _omitFieldNames ? '' : 'identifier', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
+    ..a<$fixnum.Int64>(2, _omitFieldNames ? '' : 'identifier', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   SelectByNameAndIdentifier clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  SelectByNameAndIdentifier copyWith(
-          void Function(SelectByNameAndIdentifier) updates) =>
-      super.copyWith((message) => updates(message as SelectByNameAndIdentifier))
-          as SelectByNameAndIdentifier;
+  SelectByNameAndIdentifier copyWith(void Function(SelectByNameAndIdentifier) updates) => super.copyWith((message) => updates(message as SelectByNameAndIdentifier)) as SelectByNameAndIdentifier;
 
   @$core.override
   $pb.BuilderInfo get info_ => _i;
@@ -1437,8 +1207,7 @@ class SelectByNameAndIdentifier extends $pb.GeneratedMessage {
   @$core.override
   SelectByNameAndIdentifier createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
-  static SelectByNameAndIdentifier getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<SelectByNameAndIdentifier>(create);
+  static SelectByNameAndIdentifier getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SelectByNameAndIdentifier>(create);
   static SelectByNameAndIdentifier? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -1468,7 +1237,7 @@ class ObtainIdentifierStream extends $pb.GeneratedMessage {
     $core.Iterable<$fixnum.Int64>? identifiers,
     ProtoOration? text,
     $0.Empty? completed,
-    ProtoNegativeResult? error,
+    ProtoInvalidation? error,
   }) {
     final result = create();
     if (status != null) result.status = status;
@@ -1481,43 +1250,28 @@ class ObtainIdentifierStream extends $pb.GeneratedMessage {
 
   ObtainIdentifierStream._();
 
-  factory ObtainIdentifierStream.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory ObtainIdentifierStream.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+  factory ObtainIdentifierStream.fromBuffer($core.List<$core.int> data, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(data, registry);
+  factory ObtainIdentifierStream.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
-  static const $core.Map<$core.int, ObtainIdentifierStream_Value>
-      _ObtainIdentifierStream_ValueByTag = {
+  static const $core.Map<$core.int, ObtainIdentifierStream_Value> _ObtainIdentifierStream_ValueByTag = {
     3: ObtainIdentifierStream_Value.text,
     4: ObtainIdentifierStream_Value.completed,
     5: ObtainIdentifierStream_Value.error,
     0: ObtainIdentifierStream_Value.notSet
   };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ObtainIdentifierStream',
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ObtainIdentifierStream', createEmptyInstance: create)
     ..oo(0, [3, 4, 5])
-    ..aE<MaxiProtoStreamStatus>(1, _omitFieldNames ? '' : 'status',
-        enumValues: MaxiProtoStreamStatus.values)
-    ..p<$fixnum.Int64>(
-        2, _omitFieldNames ? '' : 'identifiers', $pb.PbFieldType.KU6)
-    ..aOM<ProtoOration>(3, _omitFieldNames ? '' : 'text',
-        subBuilder: ProtoOration.create)
-    ..aOM<$0.Empty>(4, _omitFieldNames ? '' : 'completed',
-        subBuilder: $0.Empty.new)
-    ..aOM<ProtoNegativeResult>(5, _omitFieldNames ? '' : 'error',
-        subBuilder: ProtoNegativeResult.create)
+    ..aE<MaxiProtoStreamStatus>(1, _omitFieldNames ? '' : 'status', enumValues: MaxiProtoStreamStatus.values)
+    ..p<$fixnum.Int64>(2, _omitFieldNames ? '' : 'identifiers', $pb.PbFieldType.KU6)
+    ..aOM<ProtoOration>(3, _omitFieldNames ? '' : 'text', subBuilder: ProtoOration.create)
+    ..aOM<$0.Empty>(4, _omitFieldNames ? '' : 'completed', subBuilder: $0.Empty.new)
+    ..aOM<ProtoInvalidation>(5, _omitFieldNames ? '' : 'error', subBuilder: ProtoInvalidation.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   ObtainIdentifierStream clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  ObtainIdentifierStream copyWith(
-          void Function(ObtainIdentifierStream) updates) =>
-      super.copyWith((message) => updates(message as ObtainIdentifierStream))
-          as ObtainIdentifierStream;
+  ObtainIdentifierStream copyWith(void Function(ObtainIdentifierStream) updates) => super.copyWith((message) => updates(message as ObtainIdentifierStream)) as ObtainIdentifierStream;
 
   @$core.override
   $pb.BuilderInfo get info_ => _i;
@@ -1527,15 +1281,13 @@ class ObtainIdentifierStream extends $pb.GeneratedMessage {
   @$core.override
   ObtainIdentifierStream createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
-  static ObtainIdentifierStream getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ObtainIdentifierStream>(create);
+  static ObtainIdentifierStream getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ObtainIdentifierStream>(create);
   static ObtainIdentifierStream? _defaultInstance;
 
   @$pb.TagNumber(3)
   @$pb.TagNumber(4)
   @$pb.TagNumber(5)
-  ObtainIdentifierStream_Value whichValue() =>
-      _ObtainIdentifierStream_ValueByTag[$_whichOneof(0)]!;
+  ObtainIdentifierStream_Value whichValue() => _ObtainIdentifierStream_ValueByTag[$_whichOneof(0)]!;
   @$pb.TagNumber(3)
   @$pb.TagNumber(4)
   @$pb.TagNumber(5)
@@ -1576,15 +1328,15 @@ class ObtainIdentifierStream extends $pb.GeneratedMessage {
   $0.Empty ensureCompleted() => $_ensure(3);
 
   @$pb.TagNumber(5)
-  ProtoNegativeResult get error => $_getN(4);
+  ProtoInvalidation get error => $_getN(4);
   @$pb.TagNumber(5)
-  set error(ProtoNegativeResult value) => $_setField(5, value);
+  set error(ProtoInvalidation value) => $_setField(5, value);
   @$pb.TagNumber(5)
   $core.bool hasError() => $_has(4);
   @$pb.TagNumber(5)
   void clearError() => $_clearField(5);
   @$pb.TagNumber(5)
-  ProtoNegativeResult ensureError() => $_ensure(4);
+  ProtoInvalidation ensureError() => $_ensure(4);
 }
 
 enum ObtainNameStream_Value { text, completed, error, notSet }
@@ -1595,7 +1347,7 @@ class ObtainNameStream extends $pb.GeneratedMessage {
     $core.Iterable<SelectByNameAndIdentifier>? names,
     ProtoOration? text,
     $0.Empty? completed,
-    ProtoNegativeResult? error,
+    ProtoInvalidation? error,
   }) {
     final result = create();
     if (status != null) result.status = status;
@@ -1608,42 +1360,23 @@ class ObtainNameStream extends $pb.GeneratedMessage {
 
   ObtainNameStream._();
 
-  factory ObtainNameStream.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory ObtainNameStream.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+  factory ObtainNameStream.fromBuffer($core.List<$core.int> data, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(data, registry);
+  factory ObtainNameStream.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
-  static const $core.Map<$core.int, ObtainNameStream_Value>
-      _ObtainNameStream_ValueByTag = {
-    3: ObtainNameStream_Value.text,
-    4: ObtainNameStream_Value.completed,
-    5: ObtainNameStream_Value.error,
-    0: ObtainNameStream_Value.notSet
-  };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ObtainNameStream',
-      createEmptyInstance: create)
+  static const $core.Map<$core.int, ObtainNameStream_Value> _ObtainNameStream_ValueByTag = {3: ObtainNameStream_Value.text, 4: ObtainNameStream_Value.completed, 5: ObtainNameStream_Value.error, 0: ObtainNameStream_Value.notSet};
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ObtainNameStream', createEmptyInstance: create)
     ..oo(0, [3, 4, 5])
-    ..aE<MaxiProtoStreamStatus>(1, _omitFieldNames ? '' : 'status',
-        enumValues: MaxiProtoStreamStatus.values)
-    ..pPM<SelectByNameAndIdentifier>(2, _omitFieldNames ? '' : 'names',
-        subBuilder: SelectByNameAndIdentifier.create)
-    ..aOM<ProtoOration>(3, _omitFieldNames ? '' : 'text',
-        subBuilder: ProtoOration.create)
-    ..aOM<$0.Empty>(4, _omitFieldNames ? '' : 'completed',
-        subBuilder: $0.Empty.new)
-    ..aOM<ProtoNegativeResult>(5, _omitFieldNames ? '' : 'error',
-        subBuilder: ProtoNegativeResult.create)
+    ..aE<MaxiProtoStreamStatus>(1, _omitFieldNames ? '' : 'status', enumValues: MaxiProtoStreamStatus.values)
+    ..pPM<SelectByNameAndIdentifier>(2, _omitFieldNames ? '' : 'names', subBuilder: SelectByNameAndIdentifier.create)
+    ..aOM<ProtoOration>(3, _omitFieldNames ? '' : 'text', subBuilder: ProtoOration.create)
+    ..aOM<$0.Empty>(4, _omitFieldNames ? '' : 'completed', subBuilder: $0.Empty.new)
+    ..aOM<ProtoInvalidation>(5, _omitFieldNames ? '' : 'error', subBuilder: ProtoInvalidation.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   ObtainNameStream clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  ObtainNameStream copyWith(void Function(ObtainNameStream) updates) =>
-      super.copyWith((message) => updates(message as ObtainNameStream))
-          as ObtainNameStream;
+  ObtainNameStream copyWith(void Function(ObtainNameStream) updates) => super.copyWith((message) => updates(message as ObtainNameStream)) as ObtainNameStream;
 
   @$core.override
   $pb.BuilderInfo get info_ => _i;
@@ -1653,15 +1386,13 @@ class ObtainNameStream extends $pb.GeneratedMessage {
   @$core.override
   ObtainNameStream createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
-  static ObtainNameStream getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ObtainNameStream>(create);
+  static ObtainNameStream getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ObtainNameStream>(create);
   static ObtainNameStream? _defaultInstance;
 
   @$pb.TagNumber(3)
   @$pb.TagNumber(4)
   @$pb.TagNumber(5)
-  ObtainNameStream_Value whichValue() =>
-      _ObtainNameStream_ValueByTag[$_whichOneof(0)]!;
+  ObtainNameStream_Value whichValue() => _ObtainNameStream_ValueByTag[$_whichOneof(0)]!;
   @$pb.TagNumber(3)
   @$pb.TagNumber(4)
   @$pb.TagNumber(5)
@@ -1702,15 +1433,15 @@ class ObtainNameStream extends $pb.GeneratedMessage {
   $0.Empty ensureCompleted() => $_ensure(3);
 
   @$pb.TagNumber(5)
-  ProtoNegativeResult get error => $_getN(4);
+  ProtoInvalidation get error => $_getN(4);
   @$pb.TagNumber(5)
-  set error(ProtoNegativeResult value) => $_setField(5, value);
+  set error(ProtoInvalidation value) => $_setField(5, value);
   @$pb.TagNumber(5)
   $core.bool hasError() => $_has(4);
   @$pb.TagNumber(5)
   void clearError() => $_clearField(5);
   @$pb.TagNumber(5)
-  ProtoNegativeResult ensureError() => $_ensure(4);
+  ProtoInvalidation ensureError() => $_ensure(4);
 }
 
 class ProtoAppStatus extends $pb.GeneratedMessage {
@@ -1719,7 +1450,7 @@ class ProtoAppStatus extends $pb.GeneratedMessage {
     $core.double? version,
     $core.bool? isEnable,
     $core.bool? isInitialized_4,
-    ProtoNegativeResult? lastInitError,
+    ProtoInvalidation? lastInitError,
   }) {
     final result = create();
     if (name != null) result.name = name;
@@ -1732,30 +1463,21 @@ class ProtoAppStatus extends $pb.GeneratedMessage {
 
   ProtoAppStatus._();
 
-  factory ProtoAppStatus.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory ProtoAppStatus.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+  factory ProtoAppStatus.fromBuffer($core.List<$core.int> data, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(data, registry);
+  factory ProtoAppStatus.fromJson($core.String json, [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(json, registry);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ProtoAppStatus',
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ProtoAppStatus', createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'name')
     ..aD(2, _omitFieldNames ? '' : 'version')
     ..aOB(3, _omitFieldNames ? '' : 'isEnable')
     ..aOB(4, _omitFieldNames ? '' : 'isInitialized')
-    ..aOM<ProtoNegativeResult>(5, _omitFieldNames ? '' : 'lastInitError',
-        subBuilder: ProtoNegativeResult.create)
+    ..aOM<ProtoInvalidation>(5, _omitFieldNames ? '' : 'lastInitError', subBuilder: ProtoInvalidation.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   ProtoAppStatus clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  ProtoAppStatus copyWith(void Function(ProtoAppStatus) updates) =>
-      super.copyWith((message) => updates(message as ProtoAppStatus))
-          as ProtoAppStatus;
+  ProtoAppStatus copyWith(void Function(ProtoAppStatus) updates) => super.copyWith((message) => updates(message as ProtoAppStatus)) as ProtoAppStatus;
 
   @$core.override
   $pb.BuilderInfo get info_ => _i;
@@ -1765,8 +1487,7 @@ class ProtoAppStatus extends $pb.GeneratedMessage {
   @$core.override
   ProtoAppStatus createEmptyInstance() => create();
   @$core.pragma('dart2js:noInline')
-  static ProtoAppStatus getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ProtoAppStatus>(create);
+  static ProtoAppStatus getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ProtoAppStatus>(create);
   static ProtoAppStatus? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -1806,53 +1527,27 @@ class ProtoAppStatus extends $pb.GeneratedMessage {
   void clearIsInitialized_4() => $_clearField(4);
 
   @$pb.TagNumber(5)
-  ProtoNegativeResult get lastInitError => $_getN(4);
+  ProtoInvalidation get lastInitError => $_getN(4);
   @$pb.TagNumber(5)
-  set lastInitError(ProtoNegativeResult value) => $_setField(5, value);
+  set lastInitError(ProtoInvalidation value) => $_setField(5, value);
   @$pb.TagNumber(5)
   $core.bool hasLastInitError() => $_has(4);
   @$pb.TagNumber(5)
   void clearLastInitError() => $_clearField(5);
   @$pb.TagNumber(5)
-  ProtoNegativeResult ensureLastInitError() => $_ensure(4);
+  ProtoInvalidation ensureLastInitError() => $_ensure(4);
 }
 
 class Maxi_proto {
-  static final dartDecorator = $pb.Extension<ProtoDartDecorator>(
-      _omitMessageNames ? '' : 'google.protobuf.FieldOptions',
-      _omitFieldNames ? '' : 'dartDecorator',
-      50001,
-      $pb.PbFieldType.OM,
-      defaultOrMaker: ProtoDartDecorator.getDefault,
-      subBuilder: ProtoDartDecorator.create);
-  static final dartField = $pb.Extension<ProtoDartField>(
-      _omitMessageNames ? '' : 'google.protobuf.FieldOptions',
-      _omitFieldNames ? '' : 'dartField',
-      50002,
-      $pb.PbFieldType.OM,
-      defaultOrMaker: ProtoDartField.getDefault,
-      subBuilder: ProtoDartField.create);
-  static final dartClass = $pb.Extension<ProtoDartClass>(
-      _omitMessageNames ? '' : 'google.protobuf.MessageOptions',
-      _omitFieldNames ? '' : 'dartClass',
-      51001,
-      $pb.PbFieldType.OM,
-      defaultOrMaker: ProtoDartClass.getDefault,
-      subBuilder: ProtoDartClass.create);
-  static final dartEnum = $pb.Extension<ProtoDartEnum>(
-      _omitMessageNames ? '' : 'google.protobuf.EnumOptions',
-      _omitFieldNames ? '' : 'dartEnum',
-      52001,
-      $pb.PbFieldType.OM,
-      defaultOrMaker: ProtoDartEnum.getDefault,
-      subBuilder: ProtoDartEnum.create);
-  static final dartEnumValue = $pb.Extension<ProtoDartEnumValue>(
-      _omitMessageNames ? '' : 'google.protobuf.EnumValueOptions',
-      _omitFieldNames ? '' : 'dartEnumValue',
-      53001,
-      $pb.PbFieldType.OM,
-      defaultOrMaker: ProtoDartEnumValue.getDefault,
-      subBuilder: ProtoDartEnumValue.create);
+  static final dartDecorator =
+      $pb.Extension<ProtoDartDecorator>(_omitMessageNames ? '' : 'google.protobuf.FieldOptions', _omitFieldNames ? '' : 'dartDecorator', 50001, $pb.PbFieldType.OM, defaultOrMaker: ProtoDartDecorator.getDefault, subBuilder: ProtoDartDecorator.create);
+  static final dartField =
+      $pb.Extension<ProtoDartField>(_omitMessageNames ? '' : 'google.protobuf.FieldOptions', _omitFieldNames ? '' : 'dartField', 50002, $pb.PbFieldType.OM, defaultOrMaker: ProtoDartField.getDefault, subBuilder: ProtoDartField.create);
+  static final dartClass =
+      $pb.Extension<ProtoDartClass>(_omitMessageNames ? '' : 'google.protobuf.MessageOptions', _omitFieldNames ? '' : 'dartClass', 51001, $pb.PbFieldType.OM, defaultOrMaker: ProtoDartClass.getDefault, subBuilder: ProtoDartClass.create);
+  static final dartEnum = $pb.Extension<ProtoDartEnum>(_omitMessageNames ? '' : 'google.protobuf.EnumOptions', _omitFieldNames ? '' : 'dartEnum', 52001, $pb.PbFieldType.OM, defaultOrMaker: ProtoDartEnum.getDefault, subBuilder: ProtoDartEnum.create);
+  static final dartEnumValue = $pb.Extension<ProtoDartEnumValue>(_omitMessageNames ? '' : 'google.protobuf.EnumValueOptions', _omitFieldNames ? '' : 'dartEnumValue', 53001, $pb.PbFieldType.OM,
+      defaultOrMaker: ProtoDartEnumValue.getDefault, subBuilder: ProtoDartEnumValue.create);
   static void registerAllExtensions($pb.ExtensionRegistry registry) {
     registry.add(dartDecorator);
     registry.add(dartField);
@@ -1862,7 +1557,5 @@ class Maxi_proto {
   }
 }
 
-const $core.bool _omitFieldNames =
-    $core.bool.fromEnvironment('protobuf.omit_field_names');
-const $core.bool _omitMessageNames =
-    $core.bool.fromEnvironment('protobuf.omit_message_names');
+const $core.bool _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
+const $core.bool _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');

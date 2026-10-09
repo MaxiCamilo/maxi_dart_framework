@@ -11,7 +11,7 @@ extension ProtoAppStatusAdapterExtension on ProtoAppStatus {
       ..isInitialized = isInitialized_4;
 
     if (hasLastInitError()) {
-      final lastInitError = this.lastInitError.toNegativeResult();
+      final lastInitError = this.lastInitError.toInvalidation();
 
       appStatus.lastInitError = lastInitError;
     }

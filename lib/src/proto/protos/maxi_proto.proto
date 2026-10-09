@@ -76,7 +76,7 @@ message ProtoOration {
     repeated string         text_parts      = 3;
 }
 
-message ProtoNegativeResult {
+message ProtoInvalidation {
     int32                   error_code      = 1;
     ProtoOration            message         = 2;    
 }
@@ -87,7 +87,7 @@ message ProtoResult {
   bool                      its_correct     = 1;
   oneof value {
     google.protobuf.Any     content         = 2;
-    ProtoNegativeResult     error           = 3;
+    ProtoInvalidation     error           = 3;
   }
 }
 
@@ -95,7 +95,7 @@ message ProtoVoidResult {
   bool                      its_correct     = 1;
   oneof value {
     google.protobuf.Empty   content         = 2;
-    ProtoNegativeResult     error           = 3;
+    ProtoInvalidation     error           = 3;
   }
 }
 
@@ -104,7 +104,7 @@ message ProtoVoidStream{
     oneof value{
         ProtoOration text = 2;
         google.protobuf.Empty completed = 3;
-        ProtoNegativeResult error = 4;
+        ProtoInvalidation error = 4;
     } 
 }
 
@@ -114,7 +114,7 @@ message ProtoJsonResult {
   bool                      its_correct     = 1;
   oneof value {
     string                  content         = 2;
-    ProtoNegativeResult     error           = 3;
+    ProtoInvalidation     error           = 3;
   }
 }
 
@@ -123,7 +123,7 @@ message ProtoJsonStream{
     oneof value{
         ProtoOration        text = 2;
         string              completed = 3;
-        ProtoNegativeResult error = 4;
+        ProtoInvalidation error = 4;
     } 
 }
 
@@ -169,7 +169,7 @@ message ObtainIdentifierStream{
     oneof value{
         ProtoOration text = 3;
         google.protobuf.Empty completed = 4;
-        ProtoNegativeResult error = 5;
+        ProtoInvalidation error = 5;
     } 
 }
 
@@ -179,7 +179,7 @@ message ObtainNameStream{
     oneof value{
         ProtoOration text = 3;
         google.protobuf.Empty completed = 4;
-        ProtoNegativeResult error = 5;
+        ProtoInvalidation error = 5;
     } 
 }
 
@@ -190,7 +190,7 @@ message ProtoAppStatus{
     double                  version         = 2;
     bool                    is_enable       = 3;
     bool                    is_initialized  = 4;
-    ProtoNegativeResult     last_init_error = 5;   
+    ProtoInvalidation     last_init_error = 5;   
 }
 
 service MaxiApp{

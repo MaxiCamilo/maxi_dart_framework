@@ -56,7 +56,7 @@ class MainIsolateInstance with DisposableMixin, WithLifecycleScopeMixin, Asynchr
   @override
   FutureResult<T> execute<T>({InvocationParameters parameters = InvocationParameters.empty, required FutureResultOr<T> Function(InvocationParameters) function}) async {
     checkDisposed().$;
-    await initialize().$;
+    await $$_(initialize());
 
     final selectedThread = _asynchronousThreads.minimumOf((x) => x.taskCount);
     selectedThread.taskCount += 1;
@@ -70,7 +70,7 @@ class MainIsolateInstance with DisposableMixin, WithLifecycleScopeMixin, Asynchr
   @override
   FutureResult<T> getSharedValue<T>(String name) => futureScope(() async {
     checkDisposed().$;
-    await initialize().$;
+    await $$_(initialize());
 
     return await _taskManager.addNewTask(
       threadID: 1,
@@ -82,7 +82,7 @@ class MainIsolateInstance with DisposableMixin, WithLifecycleScopeMixin, Asynchr
   @override
   Future<Result<R>> invokeSharedValue<T, R>(String name, FutureOr<Result<R>> Function(T) callback) => futureScope(() async {
     checkDisposed().$;
-    await initialize().$;
+    await $$_(initialize());
 
     return await _taskManager.addNewTask(
       threadID: 1,
@@ -94,7 +94,7 @@ class MainIsolateInstance with DisposableMixin, WithLifecycleScopeMixin, Asynchr
   @override
   Future<Result<void>> setSharedOperatorValue<T extends Disposable>(String name, T value, [bool disposePrevious = false]) => futureScope(() async {
     checkDisposed().$;
-    await initialize().$;
+    await $$_(initialize());
 
     return await _taskManager.addNewTask(
       threadID: 1,
@@ -112,7 +112,7 @@ class MainIsolateInstance with DisposableMixin, WithLifecycleScopeMixin, Asynchr
   @override
   FutureResult<void> setSharedValue<T>(String name, T value) => futureScope(() async {
     checkDisposed().$;
-    await initialize().$;
+    await $$_(initialize());
 
     return await _taskManager.addNewTask(
       threadID: 1,
@@ -125,4 +125,6 @@ class MainIsolateInstance with DisposableMixin, WithLifecycleScopeMixin, Asynchr
       ),
     );
   });
+
+  
 }

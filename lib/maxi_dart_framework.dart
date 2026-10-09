@@ -8,3 +8,5 @@ export 'src/channel.dart';
 export 'src/extensions.dart';
 export 'src/proto.dart';
 export 'src/syncronization.dart';
+export 'src/comparators.dart';
+export 'src/app.dart';

@@ -79,4 +79,6 @@ class ClientIsolateInstance with DisposableMixin, WithLifecycleScopeMixin implem
   FutureResult<void> setSharedValue<T>(String name, T value) {
     return _sharedValueManager.setSharedValue<T>(name, value);
   }
+
+  
 }

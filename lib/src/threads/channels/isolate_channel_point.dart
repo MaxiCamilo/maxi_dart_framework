@@ -56,7 +56,7 @@ class InitIsolateChannelPoint with DisposableMixin, WithLifecycleScopeMixin impl
         _senderThread = message.$1;
         _isolateId = message.$2;
         _initWaiterCompleter.complete(Result.ok);
-      } else if (message is ResultFailure) {
+      } else if (message is NegativeResult) {
         log('Initialization failed on InitIsolateChannelPoint with error: ${message.toString()}');
         _initWaiterCompleter.complete(message.cast());
         dispose();

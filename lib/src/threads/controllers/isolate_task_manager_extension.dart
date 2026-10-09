@@ -18,7 +18,7 @@ extension IsolateTaskManagerExtension on IsolateTaskManager {
     }
 
     final (port, channel) = buildPort().$;
-    await addNewTask(threadID: 0, parameters: InvocationParameters.list([port, threadID]), function: _searchThreadByID).$;
+    await $$_(addNewTask(threadID: 0, parameters: InvocationParameters.list([port, threadID]), function: _searchThreadByID));
 
     return Result.value(tryGetChannel(threadID)!);
   });

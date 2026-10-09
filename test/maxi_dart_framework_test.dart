@@ -25,12 +25,14 @@ void main() {
         final task2 = Toc.execute(
           function: (parameter) async {
             await Future.delayed(Duration(seconds: 21));
-            final other = await Toc.execute(
-              function: (parameter) async {
-                await Future.delayed(Duration(seconds: 5));
-                return Result.value('Hello, TOC other!');
-              },
-            ).$;
+            final other = await $$_(
+              Toc.execute(
+                function: (parameter) async {
+                  await Future.delayed(Duration(seconds: 5));
+                  return Result.value('Hello, TOC other!');
+                },
+              ),
+            );
             return Result.value('Hello, TOC 2 and $other!');
           },
         );
@@ -59,7 +61,7 @@ void main() {
         final resultList = await Future.wait([task1, task2, task3, task4, task5]);
 
         log('Result from TOC execution: $resultList');
-      }).$,
+      }),
     );
   });
 }

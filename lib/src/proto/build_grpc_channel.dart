@@ -17,7 +17,7 @@ final class BuildGrpcChannel extends Logic<ClientChannelBase> {
     if (isUnixSocket) {
       /*
       if (appManager.isWindows || appManager.isWeb) {
-        return NegativeResult.controller(
+        return Invalidation.controller(
           code: ErrorCode.externalFault,
           message: const FixedOration(message: 'Unix socket is not supported on this platform.'),
         );

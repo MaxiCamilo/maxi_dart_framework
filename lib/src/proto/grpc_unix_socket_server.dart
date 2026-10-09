@@ -22,15 +22,15 @@ class GrpcUnixSocketServer with AsynchronousInitializationMixin, DisposableMixin
     heart.onDispose(() => _serverInstance.shutdown());
 
     final previousSocketFile = File(address);
-    final exists = await previousSocketFile.exists().asResult('Failed to check if socket file exists').$;
+    final exists = await $$_(previousSocketFile.exists().asResult('Failed to check if socket file exists'));
 
     if (exists) {
       //⨻⟴
       print('⟁ Warning: Socket file $address already exists. It will be deleted to create the grpc server.');
-      await previousSocketFile.delete().asResult('Failed to delete existing socket file in %: %', [address]).$;
+      await $$_(previousSocketFile.delete().asResult('Failed to delete existing socket file in %: %', [address]));
     }
 
-    await _serverInstance.serve(address: InternetAddress(address, type: InternetAddressType.unix), port: 0).asResult('Failed to start grpc server on unix socket %: %', [address]).$;
+    await $$_(_serverInstance.serve(address: InternetAddress(address, type: InternetAddressType.unix), port: 0).asResult('Failed to start grpc server on unix socket %: %', [address]));
     return Result.ok;
   });
 

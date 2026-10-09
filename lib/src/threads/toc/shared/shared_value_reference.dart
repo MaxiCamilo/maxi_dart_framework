@@ -12,13 +12,13 @@ class SharedValueReference with DisposableMixin, WithLifecycleScopeMixin, Asynch
 
   @override
   FutureResult<void> performInitialization() => futureScopeVoid(() async {
-    await taskManager.obtainThreadChannel(1).$;
+    await $$_(taskManager.obtainThreadChannel(1));
   });
 
   @override
   FutureResult<T> getSharedValue<T>(String name) => futureScope(() async {
     checkDisposed().$;
-    await initialize().$;
+    await $$_(initialize());
 
     return await taskManager.addNewTask(
       threadID: 1,
@@ -30,7 +30,7 @@ class SharedValueReference with DisposableMixin, WithLifecycleScopeMixin, Asynch
   @override
   Future<Result<R>> invokeSharedValue<T, R>(String name, FutureOr<Result<R>> Function(T) callback) => futureScope(() async {
     checkDisposed().$;
-    await initialize().$;
+    await $$_(initialize());
 
     return await taskManager.addNewTask(
       threadID: 1,
@@ -42,7 +42,7 @@ class SharedValueReference with DisposableMixin, WithLifecycleScopeMixin, Asynch
   @override
   Future<Result<void>> setSharedOperatorValue<T extends Disposable>(String name, T value, [bool disposePrevious = false]) => futureScope(() async {
     checkDisposed().$;
-    await initialize().$;
+    await $$_(initialize());
 
     return await taskManager.addNewTask(
       threadID: 1,
@@ -60,7 +60,7 @@ class SharedValueReference with DisposableMixin, WithLifecycleScopeMixin, Asynch
   @override
   FutureResult<void> setSharedValue<T>(String name, T value) => futureScope(() async {
     checkDisposed().$;
-    await initialize().$;
+    await $$_(initialize());
 
     return await taskManager.addNewTask(
       threadID: 1,

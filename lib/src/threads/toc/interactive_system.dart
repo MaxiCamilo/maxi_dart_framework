@@ -10,7 +10,7 @@ mixin Interactive {
     if (channel == null) {
       return Result.error('Interactive channel not found in the current zone');
     }
-    return ResultValue(channel);
+    return SuccessfulResult(channel);
   });
 
   static Result<void> sendData(dynamic data) => resultScopeVoid(() {
@@ -32,9 +32,9 @@ mixin Interactive {
         return Result.error('Existing interactive channel is not a valid Channel');
       }
 
-      return ResultValue((interactiveChannelKey, exists));
+      return SuccessfulResult((interactiveChannelKey, exists));
     }
 
-    return ResultValue((interactiveChannelKey, BroadcastChannel()));
+    return SuccessfulResult((interactiveChannelKey, BroadcastChannel()));
   });
 }

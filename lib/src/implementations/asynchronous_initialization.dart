@@ -30,7 +30,7 @@ mixin AsynchronousInitializationMixin implements AsynchronousInitialization {
 
     try {
       final result = await performInitialization();
-      if (result is ResultValue) {
+      if (result is SuccessfulResult) {
         _isInitialized = true;
       }
 
