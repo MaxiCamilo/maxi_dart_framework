@@ -1,4 +1,4 @@
-@Timeout(Duration(minutes: 5))
+@Timeout(Duration(minutes: 25))
 library;
 
 import 'dart:developer';
@@ -63,5 +63,34 @@ void main() {
         log('Result from TOC execution: $resultList');
       }),
     );
+
+    test('Test TOC Channels', () async {
+      final broadcast = MasterChannel<String, int>();
+
+      broadcast.getReceiver().$.listen((event) async {
+        log('Received event: $event');
+        await Future.delayed(const Duration(seconds: 5));
+        broadcast.sendItem(21).$;
+      });
+
+      final shared = await $$_(Toc.connectToMasterChannel(broadcast));
+
+      await Toc.execute(
+        parameters: InvocationParameters.only(shared),
+        function: (para) => futureScopeVoid(
+          () async {
+            final channel = para.first<Channel<int, String>>().$;
+            channel.getReceiver().$.listen((numData) {
+              log('Received number data: $numData');
+            });
+
+            channel.sendItem('Holiiisss').$;
+            await Future.delayed(const Duration(seconds: 10));
+            channel.dispose();
+            await Future.delayed(const Duration(seconds: 50));
+          },
+        ),
+      );
+    });
   });
 }

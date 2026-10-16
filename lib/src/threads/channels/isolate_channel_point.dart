@@ -19,7 +19,10 @@ class InitIsolateChannelPoint with DisposableMixin, WithLifecycleScopeMixin impl
   @override
   bool get isActive => !isDisposed;
 
+  bool get initialized => _initialized;
+
   int _isolateId = -1;
+  bool _initialized = false;
   SendPort? _senderThread;
 
   @override
@@ -56,6 +59,7 @@ class InitIsolateChannelPoint with DisposableMixin, WithLifecycleScopeMixin impl
         _senderThread = message.$1;
         _isolateId = message.$2;
         _initWaiterCompleter.complete(Result.ok);
+        _initialized = true;
       } else if (message is NegativeResult) {
         log('Initialization failed on InitIsolateChannelPoint with error: ${message.toString()}');
         _initWaiterCompleter.complete(message.cast());

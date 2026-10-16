@@ -3,6 +3,10 @@ import 'dart:async';
 import 'package:maxi_dart_framework/maxi_dart_framework.dart';
 import 'package:maxi_dart_framework/src/threads/channels/isolate_channel_point.dart';
 import 'package:maxi_dart_framework/src/threads/toc/interactive_system.dart';
+import 'package:meta/meta.dart';
+
+@internal
+const Symbol kChannelCloseReserver = #kChannelCloseReserver;
 
 abstract interface class IsolateExecutorMessage {}
 

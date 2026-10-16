@@ -33,7 +33,7 @@ T $_<T>(Oration message, T Function() function) {
   } on _Propagate catch (_) {
     rethrow;
   } catch (ex, st) {
-    throw ExceptionResult(exception: ex, stackTrace: st, message: message);
+    throw _Propagate(ExceptionResult(exception: ex, stackTrace: st, message: message));
   }
 }
 
@@ -59,10 +59,47 @@ Future<T> $$<T>(Oration message, FutureOr<T> Function() function) async {
 }
 
 extension ResultMap<T> on Result<T> {
-  Result<R> map<R>(R Function(T) f) => switch (this) {
-    SuccessfulResult(:final value) => SuccessfulResult(f(value)),
-    NegativeResult() => (this as NegativeResult<T>).cast<R>(),
-  };
+  Result<R> map<R>(R Function(T) f, {Function? onError}) {
+    if (this is SuccessfulResult<T>) {
+      return SuccessfulResult(f((this as SuccessfulResult<T>).value));
+    }
+    if (this is NegativeResult) {
+      if (onError != null) {
+        late final dynamic newError;
+        if (onError is Function(NegativeResult<T> error)) {
+          newError = onError((this as NegativeResult).cast<T>()).cast<R>();
+        } else {
+          newError = onError();
+        }
+        if (newError is NegativeResult<R>) {
+          return newError;
+        } else {
+          return (this as NegativeResult<T>).cast<R>();
+        }
+      } else {
+        return (this as NegativeResult<T>).cast<R>();
+      }
+    } else {
+      return ExceptionResult(exception: Exception('Unexpected result type'), stackTrace: StackTrace.current, message: const Oration('An error occurred while executing a feature'));
+    }
+  }
+}
+
+extension FutureResultExtension<T> on Future<Result<T>> {
+  Future<Result<T>> logIfFailure(String message, [List<String>? parts]) async {
+    try {
+      final value = await this;
+
+      if (value is NegativeResult) {
+        log(message, name: 'NegativeResult', error: value.toString(), stackTrace: StackTrace.current);
+      }
+
+      return value;
+    } catch (ex, st) {
+      log(message, name: 'NegativeResult', error: ex.toString(), stackTrace: st);
+      return ExceptionResult(exception: ex, stackTrace: st);
+    }
+  }
 }
 
 extension FutureAsResult<T> on Future<T> {
@@ -106,6 +143,17 @@ Result<void> resultScopeVoid(void Function() body) {
     return Result.ok;
   } on _Propagate catch (p) {
     return p.failure.cast<void>();
+  }
+}
+
+Result<void> resultEncapsulation(void Function() body) {
+  try {
+    body();
+    return Result.ok;
+  } on _Propagate catch (p) {
+    return p.failure.cast<void>();
+  } catch (ex, st) {
+    return ExceptionResult(exception: ex, stackTrace: st, message: const Oration('An error occurred while executing a feature'));
   }
 }
 

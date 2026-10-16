@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:maxi_dart_framework/maxi_dart_framework.dart';
+import 'package:maxi_dart_framework/src/threads/logic/build_isolate_stream.dart';
 import 'package:maxi_dart_framework/src/threads/toc/main_isolate_instance.dart';
 import 'package:meta/meta.dart';
 
@@ -14,14 +15,13 @@ Future<T> toc$_<T>({InvocationParameters parameters = InvocationParameters.empty
 
 abstract interface class IToc {
   //FutureResult<TaskInstance<T>> buildExecution<T>({InvocationParameters parameters = InvocationParameters.empty, required FutureResultOr<T> Function(InvocationParameters) function});
+  bool get isMainThread;
+
   FutureResult<T> execute<T>({InvocationParameters parameters = InvocationParameters.empty, required FutureResultOr<T> Function(InvocationParameters) function});
-  FutureResult<T> getSharedValue<T>(String name);
-  FutureResult<void> setSharedValue<T>(String name, T value);
 
-  Future<Result<R>> invokeSharedValue<T, R>(String name, FutureOr<Result<R>> Function(T) callback);
-  Future<Result<void>> setSharedOperatorValue<T extends Disposable>(String name, T value, [bool disposePrevious = false]);
+  FutureResult<T> executeOnManager<T>({InvocationParameters parameters = InvocationParameters.empty, required FutureResultOr<T> Function(MainTocValueManager, InvocationParameters) function});
 
-  Future<Channel<S, R>> buildSharedChannel<R,S>(Channel<R,S> channel);
+  Future<Result<Channel<R, S>>> connectToSharedValue<R, S>(Channel<R, S> channel);
 }
 
 mixin Toc {
@@ -78,19 +78,23 @@ mixin Toc {
     return kInstance.execute<T>(parameters: parameters, function: function);
   }
 
-  static FutureResult<T> getSharedValue<T>(String name) {
-    return kInstance.getSharedValue<T>(name);
+  static Future<Result<Channel<R, S>>> connectToSharedValue<R, S>(Channel<R, S> channel) => kInstance.connectToSharedValue<R, S>(channel);
+
+  static Future<Result<Channel<S, R>>> connectToMasterChannel<R, S>(MasterChannel<R, S> masterChannel) => futureScope(() => kInstance.connectToSharedValue<S, R>(masterChannel.buildFollowerChannel().$));
+
+  static FutureResult<Stream<T>> connectStream<T>({InvocationParameters parameters = InvocationParameters.empty, required Future<Result<Stream<T>>> Function(InvocationParameters) function}) {
+    return BuildIsolateStream(parameters: parameters, function: function).run();
   }
 
-  static FutureResult<void> setSharedValue<T>(String name, T value) {
-    return kInstance.setSharedValue<T>(name, value);
+  static FutureResult<T> executeOnManager<T>({InvocationParameters parameters = InvocationParameters.empty, required FutureResultOr<T> Function(MainTocValueManager, InvocationParameters) function}) {
+    return kInstance.executeOnManager<T>(parameters: parameters, function: function);
   }
 
-  static Future<Result<R>> invokeSharedValue<T, R>(String name, FutureOr<Result<R>> Function(T) callback) {
-    return kInstance.invokeSharedValue<T, R>(name, callback);
-  }
-
-  static Future<Result<void>> setSharedOperatorValue<T extends Disposable>(String name, T value, [bool disposePrevious = false]) {
-    return kInstance.setSharedOperatorValue<T>(name, value, disposePrevious);
+  static Result<void> checkOnlyMainThread() {
+    if (kInstance.isMainThread) {
+      return Result.ok;
+    } else {
+      return Result.error('This functionality only execute on the main thread');
+    }
   }
 }

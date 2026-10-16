@@ -4,7 +4,10 @@ import 'dart:isolate';
 
 import 'package:maxi_dart_framework/maxi_dart_framework.dart';
 import 'package:maxi_dart_framework/src/threads/channels/isolate_channel_point.dart';
+import 'package:maxi_dart_framework/src/threads/channels/isolate_end_channel_point.dart';
+import 'package:maxi_dart_framework/src/threads/channels/isolate_start_channel_point.dart';
 import 'package:maxi_dart_framework/src/threads/controllers/isolate_task_manager.dart';
+import 'package:maxi_dart_framework/src/threads/shared/isolate/real_isolate_toc_value_manager.dart';
 import 'package:maxi_dart_framework/src/threads/toc/client_isolate_instance.dart';
 import 'package:meta/meta.dart';
 
@@ -23,13 +26,19 @@ class MainIsolateInstance with DisposableMixin, WithLifecycleScopeMixin, Asynchr
 
   late final IsolateTaskManager _taskManager;
 
+  late final MainTocValueManager _mainTocManager;
+
   @internal
   IsolateTaskManager get taskManager => _taskManager;
+
+  @override
+  bool get isMainThread => true;
 
   @override
   FutureResult<void> performInitialization() => futureScope(() async {
     _taskManager = heart.attachChild(IsolateTaskManager(currentIsolateID: 0, zoneValues: {Toc.kTocSymbol: this}));
     _asynchronousThreads = heart.attachChild(DisposableLinkedList<_ClientPoints>());
+    _mainTocManager = heart.attachChild<RealIsolateTocValueManager>(RealIsolateTocValueManager());
 
     final (sharedPort, sharedChannel) = _taskManager.buildPort().$;
     await Isolate.spawn<(int, SendPort)>(_startThread, (1, sharedPort), debugName: 'Thread 1: Shared Values');
@@ -68,63 +77,24 @@ class MainIsolateInstance with DisposableMixin, WithLifecycleScopeMixin, Asynchr
   }
 
   @override
-  FutureResult<T> getSharedValue<T>(String name) => futureScope(() async {
+  Future<Result<Channel<R, S>>> connectToSharedValue<R, S>(Channel<R, S> channel) => futureScopeValue(() async {
     checkDisposed().$;
     await $$_(initialize());
 
-    return await _taskManager.addNewTask(
-      threadID: 1,
-      parameters: InvocationParameters.only(name),
-      function: (para) => futureScope(() => Toc.kInstance.getSharedValue<T>(para.first<String>().$)),
+    final startChannelPoint = heart.attachChild(
+      IsolateStartChannelPoint<R, S>(channel: channel),
     );
+
+    final sender = startChannelPoint.getSenderPoint().$;
+
+    return IsolateEndChannelPoint<R, S>(port: sender);
   });
 
   @override
-  Future<Result<R>> invokeSharedValue<T, R>(String name, FutureOr<Result<R>> Function(T) callback) => futureScope(() async {
+  FutureResult<T> executeOnManager<T>({InvocationParameters parameters = InvocationParameters.empty, required function}) => futureScope(() async {
     checkDisposed().$;
     await $$_(initialize());
 
-    return await _taskManager.addNewTask(
-      threadID: 1,
-      parameters: InvocationParameters.list([name, callback]),
-      function: (para) => futureScope(() => Toc.kInstance.invokeSharedValue<T, R>(para.first<String>().$, para.second<FutureOr<Result<R>> Function(T)>().$)),
-    );
+    return await function(_mainTocManager, parameters);
   });
-
-  @override
-  Future<Result<void>> setSharedOperatorValue<T extends Disposable>(String name, T value, [bool disposePrevious = false]) => futureScope(() async {
-    checkDisposed().$;
-    await $$_(initialize());
-
-    return await _taskManager.addNewTask(
-      threadID: 1,
-      parameters: InvocationParameters.list([name, value, disposePrevious]),
-      function: (para) => futureScope(
-        () => Toc.kInstance.setSharedOperatorValue<T>(
-          para.first<String>().$,
-          para.second<T>().$,
-          para.third<bool>().$,
-        ),
-      ),
-    );
-  });
-
-  @override
-  FutureResult<void> setSharedValue<T>(String name, T value) => futureScope(() async {
-    checkDisposed().$;
-    await $$_(initialize());
-
-    return await _taskManager.addNewTask(
-      threadID: 1,
-      parameters: InvocationParameters.list([name, value]),
-      function: (para) => futureScope(
-        () => Toc.kInstance.setSharedValue<T>(
-          para.first<String>().$,
-          para.second<T>().$,
-        ),
-      ),
-    );
-  });
-
-  
 }

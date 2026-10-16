@@ -9,8 +9,6 @@ import 'package:maxi_dart_framework/src/threads/controllers/isolate_request.dart
 import 'package:maxi_dart_framework/src/threads/controllers/isolate_task.dart';
 import 'package:rxdart/rxdart.dart';
 
-
-
 class IsolateTaskManager with DisposableMixin, WithLifecycleScopeMixin {
   final int currentIsolateID;
   final Map<dynamic, dynamic> zoneValues;
@@ -23,6 +21,20 @@ class IsolateTaskManager with DisposableMixin, WithLifecycleScopeMixin {
   int get taskCount => _tasks.length;
 
   int _nextTaskID = 0;
+
+  static const Symbol _kIsolateTaskManagerSymbol = #kIsolateTaskManagerSymbol;
+
+  static Result<IsolateTaskManager> getCurrent() {
+    final current = Zone.current[_kIsolateTaskManagerSymbol];
+    if (current == null) {
+      return Result.error('No current IsolateTaskManager found', []);
+    }
+    if (current is IsolateTaskManager) {
+      return Result.value(current);
+    } else {
+      return Result.error('Current IsolateTaskManager is not of the correct type');
+    }
+  }
 
   new({required this.currentIsolateID, required this.zoneValues});
 
@@ -142,7 +154,7 @@ class IsolateTaskManager with DisposableMixin, WithLifecycleScopeMixin {
   }
 
   void _buildNewTask(IsolateChannelPoint channel, IsolateExecutorNewTask data) {
-    final task = data.buildTask(channel, {#localThreadValues: _localThreadValues, ...zoneValues}, currentIsolateID);
+    final task = data.buildTask(channel, {#localThreadValues: _localThreadValues, _kIsolateTaskManagerSymbol: this, ...zoneValues}, currentIsolateID);
     _tasks.addLast(task);
 
     final runResult = task.run();

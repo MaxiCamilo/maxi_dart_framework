@@ -2,16 +2,17 @@ import 'dart:async';
 import 'dart:isolate';
 
 import 'package:maxi_dart_framework/maxi_dart_framework.dart';
+import 'package:maxi_dart_framework/src/threads/channels/isolate_end_channel_point.dart';
+import 'package:maxi_dart_framework/src/threads/channels/isolate_start_channel_point.dart';
 import 'package:maxi_dart_framework/src/threads/controllers/isolate_task_manager.dart';
-import 'package:maxi_dart_framework/src/threads/toc/shared/shared_value_instance.dart';
-import 'package:maxi_dart_framework/src/threads/toc/shared/shared_value_manager.dart';
-import 'package:maxi_dart_framework/src/threads/toc/shared/shared_value_reference.dart';
 
 class ClientIsolateInstance with DisposableMixin, WithLifecycleScopeMixin implements IToc {
   final int identifier;
 
   late final IsolateTaskManager _taskManager;
-  late final SharedValueManager _sharedValueManager;
+
+  @override
+  bool get isMainThread => false;
 
   new({required this.identifier, required SendPort sender}) {
     _taskManager = heart.attachChild(
@@ -23,12 +24,6 @@ class ClientIsolateInstance with DisposableMixin, WithLifecycleScopeMixin implem
       ),
     );
     _taskManager.connectChannel(port: sender, initID: 0).$;
-
-    if (identifier == 1) {
-      _sharedValueManager = heart.attachChild<SharedValueInstance>(SharedValueInstance());
-    } else {
-      _sharedValueManager = heart.attachChild<SharedValueReference>(SharedValueReference(taskManager: _taskManager));
-    }
   }
 
   @override
@@ -61,24 +56,30 @@ class ClientIsolateInstance with DisposableMixin, WithLifecycleScopeMixin implem
   }
 
   @override
-  FutureResult<T> getSharedValue<T>(String name) {
-    return _sharedValueManager.getSharedValue<T>(name);
-  }
+  Future<Result<Channel<R, S>>> connectToSharedValue<R, S>(Channel<R, S> channel) => futureScopeValue(() async {
+    checkDisposed().$;
+
+    final startChannelPoint = heart.attachChild(
+      IsolateStartChannelPoint<R, S>(channel: channel),
+    );
+
+    final sender = startChannelPoint.getSenderPoint().$;
+
+    return IsolateEndChannelPoint<R, S>(port: sender);
+  });
 
   @override
-  Future<Result<R>> invokeSharedValue<T, R>(String name, FutureOr<Result<R>> Function(T) callback) {
-    return _sharedValueManager.invokeSharedValue<T, R>(name, callback);
+  FutureResult<T> executeOnManager<T>({InvocationParameters parameters = InvocationParameters.empty, required FutureResultOr<T> Function(MainTocValueManager, InvocationParameters) function}) {
+    return _taskManager.addNewTask(
+      threadID: 0,
+      parameters: InvocationParameters.addParameters(original: parameters, namedParameters: {'%&#funk2': function}),
+      function: _invokeToThreadServerValues<T>,
+    );
   }
 
-  @override
-  Future<Result<void>> setSharedOperatorValue<T extends Disposable>(String name, T value, [bool disposePrevious = false]) {
-    return _sharedValueManager.setSharedOperatorValue<T>(name, value, disposePrevious);
-  }
-
-  @override
-  FutureResult<void> setSharedValue<T>(String name, T value) {
-    return _sharedValueManager.setSharedValue<T>(name, value);
-  }
-
-  
+  static FutureResult<T> _invokeToThreadServerValues<T>(InvocationParameters parameters) => futureScope(() async {
+    final function = parameters.namedParameters['%&#funk2'] as FutureResultOr<T> Function(MainTocValueManager, InvocationParameters);
+    final mainInstance = Toc.getTocZone().$;
+    return mainInstance.executeOnManager(function: function, parameters: parameters);
+  });
 }

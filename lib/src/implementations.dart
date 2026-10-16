@@ -7,3 +7,4 @@ export 'implementations/disposable_linked_list.dart';
 
 export 'implementations/extensions/dispose_extensions.dart';
 export 'implementations/extensions/lifecyclescope_extension.dart';
+export 'implementations/extensions/functionality_extensions.dart';

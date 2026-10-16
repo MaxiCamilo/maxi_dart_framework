@@ -17,18 +17,12 @@ final class ObtainAppAddress extends Logic<String> {
 
     if (_appAddressCache != null) return _appAddressCache!;
 
-    final exe = Platform.resolvedExecutable;
-    final name = p.basenameWithoutExtension(exe);
-
-    if (name == 'dart' || name == 'dartaotruntime') {
-      _appAddressCache = Directory.current.path;
-    } else {
-      _appAddressCache = p.dirname(exe);
-    }
-
-    if (CheckIfItsDebug().run(scope).$) {
-      _appAddressCache = '$_appAddressCache/debug';
+    if (const CheckIfItsDebug().run(scope).$) {
+      _appAddressCache = '${Directory.current.path}/debug';
       volatileScope(message: Oration('Failed to create debug directory ?', [_appAddressCache!]), function: () => Directory(_appAddressCache!).createSync()).$;
+    } else {
+      final exe = Platform.resolvedExecutable;
+      _appAddressCache = p.dirname(exe);
     }
 
     return _appAddressCache!;

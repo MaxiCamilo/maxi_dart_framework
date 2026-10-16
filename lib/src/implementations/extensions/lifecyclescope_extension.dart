@@ -12,6 +12,11 @@ extension LifecycleScopeExtension on ILifecycleScope {
       return child;
     }
 
+    if (child is WithLifecycleScope) {
+      attachChildWithHeart(child as WithLifecycleScope);
+      return child;
+    }
+
     if (child is DisposableMixin && child.isDisposed) {
       log('Child is already disposed. Skipping attachment');
       return child;
@@ -39,7 +44,9 @@ extension LifecycleScopeExtension on ILifecycleScope {
       return Result.error('Heart is already disposed. It will not be attached');
     }
 
-    final disposable = attachChild(heart, (h) => h.dispose());
+    final disposable = onDispose(() {
+      heart.dispose();
+    });
     heart.onDispose(() {
       disposable.dispose();
     });
@@ -117,7 +124,7 @@ extension LifecycleScopeExtension on ILifecycleScope {
     }
 
     final onDispose = _OnDispose(func: func);
-    attach(value: onDispose, function: (d) => d.execute).$;
+    attach(value: onDispose, function: (d) => d.execute()).$;
     return onDispose;
   }
 
@@ -162,6 +169,44 @@ extension LifecycleScopeExtension on ILifecycleScope {
 
     return timer;
   }
+
+  Result<T> disposeWhereFail<T>(Result<T> Function() callback) {
+    late final Result<T> result;
+    try {
+      result = callback();
+    } catch (ex, st) {
+      result = ExceptionResult<T>(exception: ex, stackTrace: st);
+    }
+
+    if (result is NegativeResult<T>) {
+      dispose();
+    }
+
+    return result;
+  }
+
+  FutureResult<void> wait(Duration duration) => futureScope(() async {
+    checkDisposed().$;
+
+    final completer = Completer<Result<void>>();
+
+    late final Disposable disposePoint;
+    final timer = Timer(duration, () {
+      disposePoint.dispose();
+      if (!completer.isCompleted) {
+        completer.complete(Result.ok);
+      }
+    });
+
+    disposePoint = onDispose(() {
+      timer.cancel();
+      if (!completer.isCompleted) {
+        completer.complete(Result.error('The functionality was canceled while waiting for the timer'));
+      }
+    });
+
+    return completer.future;
+  });
 }
 
 class _OnDispose with DisposableMixin {
