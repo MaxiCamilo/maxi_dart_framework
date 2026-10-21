@@ -25,4 +25,13 @@ extension IterableExtensions<T> on Iterable<T> {
     }
     return true;
   }
+
+  Iterable<T> intersperse(T separator) sync* {
+    var first = true;
+    for (final element in this) {
+      if (!first) yield separator;
+      yield element;
+      first = false;
+    }
+  }
 }

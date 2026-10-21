@@ -126,6 +126,8 @@ Result<T> resultScope<T>(Result<T> Function() body) {
     return body();
   } on _Propagate catch (p) {
     return p.failure.cast<T>();
+  } catch (ex, st) {
+    return ExceptionResult(exception: ex, stackTrace: st, message: const Oration('An error occurred while executing a feature'));
   }
 }
 
@@ -134,19 +136,12 @@ Result<T> resultScopeValue<T>(T Function() body) {
     return SuccessfulResult(body());
   } on _Propagate catch (p) {
     return p.failure.cast<T>();
+  } catch (ex, st) {
+    return ExceptionResult(exception: ex, stackTrace: st, message: const Oration('An error occurred while executing a feature'));
   }
 }
 
 Result<void> resultScopeVoid(void Function() body) {
-  try {
-    body();
-    return Result.ok;
-  } on _Propagate catch (p) {
-    return p.failure.cast<void>();
-  }
-}
-
-Result<void> resultEncapsulation(void Function() body) {
   try {
     body();
     return Result.ok;
@@ -162,6 +157,8 @@ FutureResult<T> futureScope<T>(FutureResultOr<T> Function() body) async {
     return await body();
   } on _Propagate catch (p) {
     return p.failure.cast<T>();
+  } catch (ex, st) {
+    return ExceptionResult(exception: ex, stackTrace: st, message: const Oration('An error occurred while executing a feature'));
   }
 }
 
@@ -171,6 +168,8 @@ FutureResult<void> futureScopeVoid(Future<void> Function() body) async {
     return Result.ok;
   } on _Propagate catch (p) {
     return p.failure.cast<void>();
+  } catch (ex, st) {
+    return ExceptionResult(exception: ex, stackTrace: st, message: const Oration('An error occurred while executing a feature'));
   }
 }
 
@@ -179,6 +178,8 @@ FutureResult<T> futureScopeValue<T>(FutureOr<T> Function() body) async {
     return Result.value(await body());
   } on _Propagate catch (p) {
     return p.failure.cast<T>();
+  } catch (ex, st) {
+    return ExceptionResult(exception: ex, stackTrace: st, message: const Oration('An error occurred while executing a feature'));
   }
 }
 

@@ -18,6 +18,7 @@ void main() {
         final task1 = Toc.execute(
           function: (parameter) async {
             await Future.delayed(Duration(seconds: 10));
+            print('Executing task 1');
             return Result.value('Hello, TOC 1!');
           },
         );
@@ -29,6 +30,7 @@ void main() {
               Toc.execute(
                 function: (parameter) async {
                   await Future.delayed(Duration(seconds: 5));
+                  print('Executing task 2');
                   return Result.value('Hello, TOC other!');
                 },
               ),
@@ -40,6 +42,7 @@ void main() {
         final task3 = Toc.execute(
           function: (parameter) async {
             await Future.delayed(Duration(seconds: 5));
+            print('Executing task 3');
             return Result.value('Hello, TOC 3!');
           },
         );
@@ -47,6 +50,7 @@ void main() {
         final task4 = Toc.execute(
           function: (parameter) async {
             await Future.delayed(Duration(seconds: 7));
+            print('Executing task 4');
             return Result.value('Hello, TOC 4!');
           },
         );
@@ -54,6 +58,7 @@ void main() {
         final task5 = Toc.execute(
           function: (parameter) async {
             await Future.delayed(Duration(seconds: 9));
+            print('Executing task 5');
             return Result.value('Hello, TOC 5!');
           },
         );
