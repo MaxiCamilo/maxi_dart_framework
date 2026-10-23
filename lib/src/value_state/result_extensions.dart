@@ -25,6 +25,13 @@ extension ResultTry<T> on Result<T> {
     }
     return this;
   }
+
+  T $_(Oration message) {
+    return switch (this) {
+      SuccessfulResult(:final value) => value,
+      NegativeResult() => throw _Propagate(Invalidation(message: Oration(message.message, [(this as NegativeResult).message.toString()]))),
+    };
+  }
 }
 
 T $_<T>(Oration message, T Function() function) {
@@ -59,18 +66,15 @@ Future<T> $$<T>(Oration message, FutureOr<T> Function() function) async {
 }
 
 extension ResultMap<T> on Result<T> {
-  Result<R> map<R>(R Function(T) f, {Function? onError}) {
+  Result<R> map<R>(R Function(T) f, {Function(NegativeResult<T>)? onError}) {
     if (this is SuccessfulResult<T>) {
       return SuccessfulResult(f((this as SuccessfulResult<T>).value));
     }
     if (this is NegativeResult) {
       if (onError != null) {
         late final dynamic newError;
-        if (onError is Function(NegativeResult<T> error)) {
-          newError = onError((this as NegativeResult).cast<T>()).cast<R>();
-        } else {
-          newError = onError();
-        }
+        newError = onError((this as NegativeResult).cast<T>()).cast<R>();
+
         if (newError is NegativeResult<R>) {
           return newError;
         } else {

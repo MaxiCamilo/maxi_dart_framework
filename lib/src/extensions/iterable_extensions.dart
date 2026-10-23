@@ -34,4 +34,10 @@ extension IterableExtensions<T> on Iterable<T> {
       first = false;
     }
   }
+
+  List<T> editList(void Function(List<T>) func) {
+    final list = toList();
+    func(list);
+    return list;
+  }
 }
