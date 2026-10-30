@@ -87,6 +87,30 @@ extension ResultMap<T> on Result<T> {
       return ExceptionResult(exception: Exception('Unexpected result type'), stackTrace: StackTrace.current, message: const Oration('An error occurred while executing a feature'));
     }
   }
+
+  FutureResult<R> futureMap<R>(FutureOr<Result<R>> Function(T) f, {FutureOr Function(NegativeResult<T>)? onError}) async {
+    if (this is SuccessfulResult<T>) {
+      return await f((this as SuccessfulResult<T>).value);
+    }
+    if (this is NegativeResult) {
+      if (onError != null) {
+        late final dynamic newError;
+        newError = await onError((this as NegativeResult).cast<T>());
+
+        if (newError is NegativeResult<R>) {
+          return newError;
+        } else if (newError is SuccessfulResult<R>) {
+          return newError;
+        } else {
+          return (this as NegativeResult<T>).cast<R>();
+        }
+      } else {
+        return (this as NegativeResult<T>).cast<R>();
+      }
+    } else {
+      return ExceptionResult(exception: Exception('Unexpected result type'), stackTrace: StackTrace.current, message: const Oration('An error occurred while executing a feature'));
+    }
+  }
 }
 
 extension FutureResultExtension<T> on Future<Result<T>> {

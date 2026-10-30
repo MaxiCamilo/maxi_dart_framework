@@ -29,7 +29,7 @@ class SharedValue<T> {
 
   FutureResult<Stream<T>> reactToValueChange() => futureScopeValue(() async {
     final masterChannel = MasterChannel<T, T>();
-    final sharedChannel = await $$_(Toc.connectToMasterChannel(masterChannel));
+    final sharedChannel = await $$_(Toc.buildSharedConnector(masterChannel));
     return sharedChannel.getReceiver().$;
   });
 

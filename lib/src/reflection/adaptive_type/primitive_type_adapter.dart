@@ -2,7 +2,11 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:maxi_dart_framework/maxi_dart_framework.dart';
+import 'package:maxi_dart_framework/src/reflection/adaptive_type.dart';
 import 'package:maxi_dart_framework/src/reflection/reflection_type.dart';
+import 'package:maxi_dart_framework/src/reflection/types/composition_type.dart';
+import 'package:maxi_dart_framework/src/reflection/types/dynamic_type.dart';
+import 'package:maxi_dart_framework/src/reflection/types/fixed_type.dart';
 
 enum PrimitiveType {
   primitiveString,

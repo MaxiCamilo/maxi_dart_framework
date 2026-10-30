@@ -78,7 +78,7 @@ void main() {
         broadcast.sendItem(21).$;
       });
 
-      final shared = await $$_(Toc.connectToMasterChannel(broadcast));
+      final shared = await $$_(Toc.buildSharedConnector(broadcast));
 
       await Toc.execute(
         parameters: InvocationParameters.only(shared),

@@ -34,22 +34,30 @@ class MainIsolateInstance with DisposableMixin, WithLifecycleScopeMixin, Asynchr
   @override
   bool get isMainThread => true;
 
+  final List<Isolate> _isolates = [];
+
   @override
   FutureResult<void> performInitialization() => futureScope(() async {
+    if (isAndroidPlatform && !Toc.androidConfirmThreadWarning) {
+      print('FATAL FAILURE: An Android instance is running without a thread canceller attached. When the thread becomes unavailable, use “InitMaxiFlutterApp”');
+      exit(1);
+    }
+
     _taskManager = heart.attachChild(IsolateTaskManager(currentIsolateID: 0, zoneValues: {Toc.kTocSymbol: this}));
     _asynchronousThreads = heart.attachChild(DisposableLinkedList<_ClientPoints>());
     _mainTocManager = heart.attachChild<RealIsolateTocValueManager>(RealIsolateTocValueManager());
 
     final (sharedPort, sharedChannel) = _taskManager.buildPort().$;
-    await Isolate.spawn<(int, SendPort)>(_startThread, (1, sharedPort), debugName: 'Thread 1: Shared Values');
+    _isolates.add(await Isolate.spawn<(int, SendPort)>(_startThread, (1, sharedPort), debugName: 'Thread 1: Shared Values'));
     await sharedChannel.waitInit();
     //_asynchronousThreads.addLast(sharedChannel);
 
     for (int i = 0; i < Platform.numberOfProcessors; i++) {
       final (sharedPort, sharedChannel) = _taskManager.buildPort().$;
-      await Isolate.spawn<(int, SendPort)>(_startThread, (i + 2, sharedPort), debugName: 'Thread ${i + 2}: Task Processor');
+      final isolate = await Isolate.spawn<(int, SendPort)>(_startThread, (i + 2, sharedPort), debugName: 'Thread ${i + 2}: Task Processor');
       await sharedChannel.waitInit();
       _asynchronousThreads.addLast(_ClientPoints(channel: sharedChannel));
+      _isolates.add(isolate);
     }
 
     return Result.ok;
@@ -97,4 +105,15 @@ class MainIsolateInstance with DisposableMixin, WithLifecycleScopeMixin, Asynchr
 
     return await function(_mainTocManager, parameters);
   });
+
+  @override
+  void performDisposal() {
+    super.performDisposal();
+
+    for (var isolate in _isolates) {
+      isolate.kill(priority: Isolate.beforeNextEvent);
+    }
+
+    _isolates.clear();
+  }
 }

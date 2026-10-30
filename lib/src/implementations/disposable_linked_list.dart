@@ -63,11 +63,14 @@ class DisposableLinkedList<T extends Disposable> extends Iterable<T> with Dispos
   }
 
   void clear() {
-    for (var element in _list) {
+    for (var element in _list.toList(growable: false)) {
       if (element.attached) {
         element.value.dispose();
       }
-      element.unlink();
+      /*
+      try {
+        element.unlink();
+      } catch (_) {}*/
     }
   }
 

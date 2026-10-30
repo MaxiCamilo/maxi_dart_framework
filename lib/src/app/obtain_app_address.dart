@@ -9,13 +9,22 @@ final class ObtainAppAddress extends Logic<String> {
 
   static String? _appAddressCache;
 
+  static String? androidLocalFolder;
+
   @override
-  Result<String> performExecution(ILifecycleScope scope) => resultScopeValue(() {
+  Result<String> performExecution(ILifecycleScope scope) => resultScope(() {
     if (isWebPlatform) {
-      return '';
+      return Result.value('');
     }
 
-    if (_appAddressCache != null) return _appAddressCache!;
+    if (isAndroidPlatform) {
+      if (androidLocalFolder == null) {
+        return Result.error('Android local folder is not set, please use "package:path_provider/path_provider.dart" or "FlutterPathProvider"');
+      }
+      return Result.value(androidLocalFolder!);
+    }
+
+    if (_appAddressCache != null) return Result.value(_appAddressCache!);
 
     if (const CheckIfItsDebug().run(scope).$) {
       _appAddressCache = '${Directory.current.path}/debug';
@@ -25,6 +34,6 @@ final class ObtainAppAddress extends Logic<String> {
       _appAddressCache = p.dirname(exe);
     }
 
-    return _appAddressCache!;
+    return Result.value(_appAddressCache!);
   });
 }

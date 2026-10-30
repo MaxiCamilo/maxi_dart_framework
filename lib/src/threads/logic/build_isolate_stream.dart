@@ -11,7 +11,7 @@ final class BuildIsolateStream<T> extends Functionality<Stream<T>> {
   @override
   FutureResult<Stream<T>> performExecution(ILifecycleScope scope) => futureScopeValue(() async {
     final master = MasterChannel<T, T>();
-    final channel = await $$_(Toc.connectToMasterChannel(master));
+    final channel = await $$_(Toc.buildSharedConnector(master));
 
     await $$_(
       Toc.execute(

@@ -28,6 +28,8 @@ mixin Toc {
   @internal
   static IToc kInstance = MainIsolateInstance();
 
+  static bool androidConfirmThreadWarning = false;
+
   @internal
   static const Symbol kTocSymbol = #toc;
   @internal
@@ -80,13 +82,13 @@ mixin Toc {
 
   static Future<Result<Channel<R, S>>> connectToSharedValue<R, S>(Channel<R, S> channel) => kInstance.connectToSharedValue<R, S>(channel);
 
-  static Future<Result<Channel<S, R>>> connectToMasterChannel<R, S>(MasterChannel<R, S> masterChannel) => futureScope(() => kInstance.connectToSharedValue<S, R>(masterChannel.buildFollowerChannel().$));
+  static Future<Result<Channel<S, R>>> buildSharedConnector<R, S>(MasterChannel<R, S> masterChannel) => futureScope(() => kInstance.connectToSharedValue<S, R>(masterChannel.buildFollowerChannel().$));
 
   static FutureResult<Stream<T>> connectStream<T>({InvocationParameters parameters = InvocationParameters.empty, required Future<Result<Stream<T>>> Function(InvocationParameters) function}) {
     return BuildIsolateStream(parameters: parameters, function: function).run();
   }
 
-  static FutureResult<T> executeOnManager<T>({InvocationParameters parameters = InvocationParameters.empty, required FutureResultOr<T> Function(MainTocValueManager, InvocationParameters) function}) {
+  static FutureResult<T> executeOnManager<T>({InvocationParameters parameters = InvocationParameters.empty, required FutureResultOr<T> Function(MainTocValueManager main, InvocationParameters para) function}) {
     return kInstance.executeOnManager<T>(parameters: parameters, function: function);
   }
 
@@ -97,4 +99,6 @@ mixin Toc {
       return Result.error('This functionality only execute on the main thread');
     }
   }
+
+  static bool get isMainThread => kInstance.isMainThread;
 }

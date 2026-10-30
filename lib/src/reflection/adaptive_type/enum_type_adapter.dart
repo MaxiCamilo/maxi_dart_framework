@@ -1,5 +1,7 @@
 import 'package:maxi_dart_framework/maxi_dart_framework.dart';
+import 'package:maxi_dart_framework/src/reflection/adaptive_type.dart';
 import 'package:maxi_dart_framework/src/reflection/reflection_type.dart';
+import 'package:maxi_dart_framework/src/reflection/types/enum_type.dart';
 
 final class EnumTypeAdapter implements AdaptiveType {
   final EnumType enumType;
