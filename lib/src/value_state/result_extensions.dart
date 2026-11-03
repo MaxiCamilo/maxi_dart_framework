@@ -128,6 +128,14 @@ extension FutureResultExtension<T> on Future<Result<T>> {
       return ExceptionResult(exception: ex, stackTrace: st);
     }
   }
+
+  Future<NegativeResult<T>?> extractError() async {
+    final value = await this;
+    if (value is NegativeResult<T>) {
+      return value;
+    }
+    return null;
+  }
 }
 
 extension FutureAsResult<T> on Future<T> {
