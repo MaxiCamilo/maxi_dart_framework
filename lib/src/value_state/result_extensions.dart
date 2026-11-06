@@ -111,6 +111,13 @@ extension ResultMap<T> on Result<T> {
       return ExceptionResult(exception: Exception('Unexpected result type'), stackTrace: StackTrace.current, message: const Oration('An error occurred while executing a feature'));
     }
   }
+
+  NegativeResult<R>? extractError<R>() {
+    if (this is NegativeResult) {
+      return (this as NegativeResult).cast<R>();
+    }
+    return null;
+  }
 }
 
 extension FutureResultExtension<T> on Future<Result<T>> {
