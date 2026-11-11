@@ -40,4 +40,13 @@ extension IterableExtensions<T> on Iterable<T> {
     func(list);
     return list;
   }
+
+  Iterable<T> separatedBy(T separator) sync* {
+    var first = true;
+    for (final w in this) {
+      if (!first) yield separator;
+      yield w;
+      first = false;
+    }
+  }
 }
