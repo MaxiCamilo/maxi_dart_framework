@@ -88,7 +88,7 @@ extension LifecycleScopeExtension on ILifecycleScope {
     final subscription = volatileScope(
       message: const Oration('Failed to listen to the stream'),
       function: () => stream
-          .doOnCancel(() => entry.dispose)
+          .doOnCancel(() => entry.dispose())
           .listen(
             onData,
             onError: onError,
@@ -124,7 +124,7 @@ extension LifecycleScopeExtension on ILifecycleScope {
     }
 
     final onDispose = _OnDispose(func: func);
-    attach(value: onDispose, function: (d) => d.execute()).$;
+    onDispose._entry = attach(value: onDispose, function: (d) => d.execute()).$;
     return onDispose;
   }
 
@@ -212,14 +212,12 @@ extension LifecycleScopeExtension on ILifecycleScope {
 class _OnDispose with DisposableMixin {
   final void Function() func;
   bool _canceled = false;
+  Disposable? _entry;
 
   _OnDispose({required this.func});
 
   void execute() {
-    if (_canceled) {
-      return;
-    }
-
+    if (_canceled) return;
     func();
     dispose();
   }
@@ -227,5 +225,7 @@ class _OnDispose with DisposableMixin {
   @override
   void performDisposal() {
     _canceled = true;
+    _entry?.dispose(); // saca la entrada de la lista del scope
+    _entry = null;
   }
 }
